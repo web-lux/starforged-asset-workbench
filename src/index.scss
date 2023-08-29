@@ -1,0 +1,80 @@
+/* #region Fonts Declaration */
+
+@font-face {
+	font-family: "Proxima Nova Condensed Regular";
+	font-style: normal;
+	font-weight: normal;
+	src: local("Proxima Nova Condensed Regular"),
+		url("./assets/fonts/ProximaNovaCondensedRegular.woff") format("woff");
+}
+
+@font-face {
+	font-family: "Poster Gothic Round ATF";
+	font-style: normal;
+	font-weight: normal;
+	src: url("./assets/fonts/PosterGothicRoundATF.otf") format("opentype");
+}
+
+@font-face {
+	font-family: "Poster Gothic Round ATF";
+	font-style: normal;
+	font-weight: bold;
+	src: local("Poster Gothic Round ATF"),
+		url("./assets/fonts/PosterGothicRoundATFBold.otf") format("opentype");
+}
+
+@font-face {
+	font-family: "Poster Gothic Round ATF";
+	font-style: normal;
+	font-weight: 900;
+	src: local("Poster Gothic Round ATF"),
+		url("./assets/fonts/PosterGothicRoundATFHeavy.otf") format("opentype");
+}
+
+/* #endregion */
+
+/* #region Global Variables */
+
+:root {
+	--title: "Poster Gothic Round ATF";
+	--text: "Proxima Nova Condensed Regular";
+	--command-vehicle: #9aa3ae;
+	--module: #7f5a8f;
+	--support-vehicle: #4a5690;
+	--path: #417faa;
+	--companion: #3f8c89;
+	--deed: #4b974e;
+}
+
+/* #endregion */
+
+/* #region Reset */
+
+* {
+	padding: 0;
+	margin: 0;
+	font-weight: normal;
+	box-sizing: border-box;
+}
+
+/* #endregion */
+
+h1 {
+	font-size: 34px;
+}
+
+.wrapper {
+	min-height: 100vh;
+	padding: 20px;
+	font-family: var(--text), "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	color: #231f20;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	row-gap: 20px;
+
+	> main {
+		display: flex;
+		align-items: start;
+		gap: 20px;
+	}
+}
