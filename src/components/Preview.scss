@@ -1,3 +1,93 @@
+.asset-preview:has(.module) {
+	&::before {
+		content: url(../assets/bg-colors/module-1.svg);
+	}
+	&::after {
+		content: url(../assets/bg-colors/module-2.svg);
+	}
+	.icon {
+		background-color: #d8cddd;
+	}
+	span.asset-type {
+		color: #7f5a8f;
+	}
+}
+
+.asset-preview:has(.commandVehicle) {
+	&::before {
+		content: url(../assets/bg-colors/command-vehicle-1.svg);
+	}
+	&::after {
+		content: url(../assets/bg-colors/command-vehicle-2.svg);
+	}
+	.icon {
+		background-color: #e0e3e6;
+	}
+	span.asset-type {
+		color: #9aa3ae;
+	}
+}
+
+.asset-preview:has(.supportVehicle) {
+	&::before {
+		content: url(../assets/bg-colors/support-vehicle-1.svg);
+	}
+	&::after {
+		content: url(../assets/bg-colors/support-vehicle-2.svg);
+	}
+	.icon {
+		background-color: #c8ccdd;
+	}
+	span.asset-type {
+		color: #4a5690;
+	}
+}
+
+.asset-preview:has(.path) {
+	&::before {
+		content: url(../assets/bg-colors/path-1.svg);
+	}
+	&::after {
+		content: url(../assets/bg-colors/path-2.svg);
+	}
+	.icon {
+		background-color: #c4d8e5;
+	}
+	span.asset-type {
+		color: #417faa;
+	}
+}
+
+.asset-preview:has(.companion) {
+	&::before {
+		content: url(../assets/bg-colors/companion-1.svg);
+	}
+	&::after {
+		content: url(../assets/bg-colors/companion-2.svg);
+	}
+	.icon {
+		background-color: #c4dcdc;
+	}
+	span.asset-type {
+		color: #3f8c89;
+	}
+}
+
+.asset-preview:has(.deed) {
+	&::before {
+		content: url(../assets/bg-colors/deed-1.svg);
+	}
+	&::after {
+		content: url(../assets/bg-colors/deed-2.svg);
+	}
+	.icon {
+		background-color: #c4daca;
+	}
+	span.asset-type {
+		color: #4b974e;
+	}
+}
+
 .asset-preview {
 	min-height: 525px;
 	width: 375px;
@@ -7,14 +97,12 @@
 	overflow: hidden;
 
 	&::before {
-		content: url(../assets/bg-colors/module-1.svg);
 		position: absolute;
 		top: -17px;
 		right: 84px;
 	}
 
 	&::after {
-		content: url(../assets/bg-colors/module-2.svg);
 		position: absolute;
 		right: -31px;
 		top: 55px;
@@ -39,12 +127,12 @@
 				font-weight: 900;
 				font-size: 26px;
 				max-width: 180px;
+				word-wrap: break-word;
 			}
 
 			span.asset-type {
-				font-size: 17px;
+				font-size: 15px;
 				font-weight: 700;
-				color: var(--module);
 			}
 		}
 
@@ -69,7 +157,6 @@
 			.icon {
 				height: $height - $gap;
 				width: $width - $gap;
-				background-color: #d8cddd;
 			}
 		}
 	}
@@ -89,6 +176,7 @@
 			margin-right: 15px;
 			margin-left: 30px;
 			font-size: 18px;
+			white-space: pre-line;
 
 			&::before {
 				position: absolute;

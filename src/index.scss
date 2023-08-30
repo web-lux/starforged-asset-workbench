@@ -38,12 +38,6 @@
 :root {
 	--title: "Poster Gothic Round ATF";
 	--text: "Proxima Nova Condensed Regular";
-	--command-vehicle: #9aa3ae;
-	--module: #7f5a8f;
-	--support-vehicle: #4a5690;
-	--path: #417faa;
-	--companion: #3f8c89;
-	--deed: #4b974e;
 }
 
 /* #endregion */
@@ -76,5 +70,13 @@ h1 {
 		display: flex;
 		align-items: start;
 		gap: 20px;
+	}
+
+	footer {
+		a {
+			text-decoration: none;
+			font-weight: bold;
+			color: #231f20;
+		}
 	}
 }
