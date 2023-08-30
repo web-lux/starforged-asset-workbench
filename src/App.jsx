@@ -1,11 +1,5 @@
-import { useState } from 'react';
-import Preview from './components/Preview';
-
-function Form() {
-  return (
-    <div>Form</div>
-  )
-}
+import Preview from './components/Preview.jsx';
+import Form from './components/Form.jsx'
 
 function App() {
   return (

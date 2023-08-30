@@ -9,7 +9,7 @@ export default function Preview() {
 
                 <div className="title-container">
                     <span className="asset-type">Module</span>
-                    <span className="asset-title">Engine Upgrade</span>
+                    <span className="asset-title">Title</span>
                 </div>
 
                 <div className="clip icon-container">
