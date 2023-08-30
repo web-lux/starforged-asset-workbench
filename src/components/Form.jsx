@@ -1,6 +1,12 @@
 import "./Form.scss";
 
 export default function Form({ form, setForm }) {
+	function handleImageChange(e) {
+		if (e.target.files && e.target.files[0]) {
+			setForm({ ...form, imagePath: URL.createObjectURL(e.target.files[0]) })
+		}
+	}
+
 	return (
 		<div className="form">
 			<form>
@@ -13,7 +19,7 @@ export default function Form({ form, setForm }) {
 						name="assetImage"
 						id="assetImage"
 						accept=".png, .svg, .jpg"
-						onChange={(e) => setForm({ ...form, imagePath: e.target.value })}
+						onChange={handleImageChange}
 					/>
 
 					<label htmlFor="assetType">Type (module, path...)</label>
