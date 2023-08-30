@@ -67,9 +67,10 @@ h1 {
 	row-gap: 20px;
 
 	> main {
-		display: flex;
+		display: grid;
+		grid-template-columns: auto 1fr;
+		column-gap: 20px;
 		align-items: start;
-		gap: 20px;
 	}
 
 	footer {

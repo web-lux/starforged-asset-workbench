@@ -24,7 +24,7 @@ export default function Preview({ form }) {
 			<header>
 				<div className="title-container">
 					{handleType(form.type)}
-					<span className="asset-title">{form.title}</span>
+					<span className="asset-title">{form.title ? form.title : "Empty"}</span>
 				</div>
 
 				<div className="clip icon-container">
@@ -40,9 +40,9 @@ export default function Preview({ form }) {
 			</header>
 
 			<ul className="description">
-				<li className={form.upgrades1.ischecked ? "checked" : null}>{form.upgrades1.text}</li>
-				<li className={form.upgrades2.ischecked ? "checked" : null}>{form.upgrades2.text}</li>
-				<li className={form.upgrades3.ischecked ? "checked" : null}>{form.upgrades3.text}</li>
+				<li className={form.upgrades1.ischecked ? "checked" : null}>{form.upgrades1.text ? form.upgrades1.text : "Empty"}</li>
+				<li className={form.upgrades2.ischecked ? "checked" : null}>{form.upgrades2.text  ? form.upgrades2.text : "Empty"}</li>
+				<li className={form.upgrades3.ischecked ? "checked" : null}>{form.upgrades3.text  ? form.upgrades3.text : "Empty"}</li>
 			</ul>
 		</section>
 	);
