@@ -2,48 +2,66 @@ import "./Form.scss";
 
 export default function Form({ form, setForm }) {
 	function handleArr(id, property, value) {
-		const newArr = form.upgrades.map(upgrade => {
-				if (upgrade.id === id) {
-					 return {...upgrade, [property]: value}
-				} else {
-					return upgrade
-				}
-			});
+		const newArr = form.upgrades.map((upgrade) => {
+			if (upgrade.id === id) {
+				return { ...upgrade, [property]: value };
+			} else {
+				return upgrade;
+			}
+		});
 		setForm({ ...form, upgrades: newArr });
+	}
+
+	function handleImageSize(value) {
+		const percentage = value + "%";
+		setForm({
+			...form,
+			image: {
+				...form.image,
+				size: percentage
+			}
+		});
 	}
 
 	return (
 		<div className="form">
-
 			<form>
 				<fieldset>
 					<legend>Interface</legend>
 
 					<div className="fieldgroup">
-
 						<div>
 							<label htmlFor="assetImage">Image</label>
 							<input
 								type="text"
 								name="assetImage"
 								id="assetImage"
-								onChange={(e) => setForm({ ...form, imagePath: e.target.value })}
+								onChange={(e) => {
+									setForm({
+										...form,
+										image: {
+											...form.image,
+											path: e.target.value
+										}
+									});
+								}}
 							/>
 						</div>
 
 						<div>
 							<label htmlFor="assetImageSize">Image Size</label>
 							<input
-								type="text"
+								type="range"
 								name="assetImageSize"
 								id="assetImageSize"
+								onChange={(e) => {
+									handleImageSize(e.target.value)
+								}}
 							/>
 						</div>
-
 					</div>
 
 					<div className="fieldgroup">
-
 						<div>
 							<label htmlFor="assetType">Type (module, path...)</label>
 							<select
@@ -70,9 +88,7 @@ export default function Form({ form, setForm }) {
 								onChange={(e) => setForm({ ...form, title: e.target.value })}
 							/>
 						</div>
-
 					</div>
-
 				</fieldset>
 
 				<fieldset>
@@ -84,7 +100,7 @@ export default function Form({ form, setForm }) {
 							<textarea
 								name="Upgrade1"
 								id="Upgrade1"
-								onChange={e => handleArr(0, "text", e.target.value)}
+								onChange={(e) => handleArr(0, "text", e.target.value)}
 							></textarea>
 						</div>
 						<div>
@@ -94,19 +110,18 @@ export default function Form({ form, setForm }) {
 								name="Upgrade1check"
 								id="Upgrade1check"
 								defaultChecked="true"
-								onChange={e => handleArr(0, "ischecked", e.target.checked)}
+								onChange={(e) => handleArr(0, "ischecked", e.target.checked)}
 							/>
 						</div>
 					</div>
 
 					<div className="fieldgroup">
-
 						<div>
 							<label htmlFor="Upgrade2">Upgrade 2</label>
 							<textarea
 								name="Upgrade2"
 								id="Upgrade2"
-								onChange={e => handleArr(1, "text", e.target.value)}
+								onChange={(e) => handleArr(1, "text", e.target.value)}
 							></textarea>
 						</div>
 
@@ -116,10 +131,9 @@ export default function Form({ form, setForm }) {
 								type="checkbox"
 								name="Upgrade2check"
 								id="Upgrade2check"
-								onChange={e => handleArr(1, "ischecked", e.target.checked)}
+								onChange={(e) => handleArr(1, "ischecked", e.target.checked)}
 							/>
 						</div>
-						
 					</div>
 
 					<div className="fieldgroup">
@@ -128,7 +142,7 @@ export default function Form({ form, setForm }) {
 							<textarea
 								name="Upgrade3"
 								id="Upgrade3"
-								onChange={e => handleArr(2, "text", e.target.value)}
+								onChange={(e) => handleArr(2, "text", e.target.value)}
 							></textarea>
 						</div>
 						<div>
@@ -137,11 +151,10 @@ export default function Form({ form, setForm }) {
 								type="checkbox"
 								name="Upgrade3check"
 								id="Upgrade3check"
-								onChange={e => handleArr(2, "ischecked", e.target.checked)}
+								onChange={(e) => handleArr(2, "ischecked", e.target.checked)}
 							/>
 						</div>
 					</div>
-
 				</fieldset>
 			</form>
 		</div>

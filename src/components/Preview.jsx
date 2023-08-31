@@ -55,7 +55,10 @@ export default function Preview({ form }) {
 					</div>
 					<div className="clip icon-container">
 						<div className="clip icon">
-							<img src={form.imagePath ? form.imagePath : "src/assets/owl.svg"} />
+							<img
+								src={form.image.path ? form.image.path : "src/assets/owl.svg"}
+								style={{width: form.image.size}}
+							/>
 							<svg xmlns="http://www.w3.org/2000/svg" height="0" width="0">
 								<clipPath id="svg-hex" clipPathUnits="objectBoundingBox">
 									<path d="M0.501,0 L1,0.25 V0.75 L0.501,1 L0.001,0.75 L0.001,0.25 L0.501,0" />
