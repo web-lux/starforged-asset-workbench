@@ -75,8 +75,6 @@
 	width: 375px;
 	border: black 2px solid;
 	padding: 15px;
-	position: relative;
-	overflow: hidden;
 	background-repeat: no-repeat !important;
 
 	header {
@@ -97,7 +95,7 @@
 			span.asset-title {
 				font-weight: 900;
 				font-size: 26px;
-				max-width: 180px;
+				max-width: 190px;
 				word-wrap: break-word;
 			}
 
@@ -139,15 +137,14 @@
 		}
 	}
 
-	ul.description {
+	ul {
 		display: flex;
 		flex-direction: column;
 		gap: 4px;
 
-		> li {
+		li {
 			list-style: none;
 			font-family: var(--text);
-			position: relative;
 			font-size: 18px;
 			white-space: pre-line;
 			padding-left: 25px;

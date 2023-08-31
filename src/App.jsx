@@ -6,7 +6,7 @@ function App() {
   const [form, setForm] = useState({
 		title: 'Title',
 		type: 'module',
-		imagePath: 'https://i.imgur.com/lWLPw40.jpg',
+		imagePath: 'src/assets/owl.svg',
 		upgrades1: {
 				ischecked: true,
 				text: `Your vehicle’s finely-tuned engines speed your travels. When you Undertake an Expedition (+edge) and score a strong hit, take +1 momentum; on a strong hit with a 6 on your action die, take +2 momentum instead of +1.`

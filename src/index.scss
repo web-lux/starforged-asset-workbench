@@ -9,6 +9,14 @@
 }
 
 @font-face {
+	font-family: "Proxima Nova Condensed Regular";
+	font-style: normal;
+	font-weight: bold;
+	src: local("Proxima Nova Condensed Regular"),
+		url("./assets/fonts/ProximaNovaCondensedBold.woff") format("woff");
+}
+
+@font-face {
 	font-family: "Poster Gothic Round ATF";
 	font-style: normal;
 	font-weight: normal;
@@ -59,7 +67,7 @@ h1 {
 
 .wrapper {
 	min-height: 100vh;
-	padding: 20px;
+	padding: 20px 30px;
 	font-family: var(--text), "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	color: #231f20;
 	display: grid;
