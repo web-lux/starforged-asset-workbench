@@ -50,12 +50,12 @@ export default function Preview({ form }) {
 					<div className="title-container">
 						{handleType(form.type)}
 						<span className="asset-title">
-							{form.title ? form.title : "Empty"}
+							{form.title ? form.title : "Title"}
 						</span>
 					</div>
 					<div className="clip icon-container">
 						<div className="clip icon">
-							<img src={form.imagePath} />
+							<img src={form.imagePath ? form.imagePath : "src/assets/owl.svg"} />
 							<svg xmlns="http://www.w3.org/2000/svg" height="0" width="0">
 								<clipPath id="svg-hex" clipPathUnits="objectBoundingBox">
 									<path d="M0.501,0 L1,0.25 V0.75 L0.501,1 L0.001,0.75 L0.001,0.25 L0.501,0" />
@@ -65,14 +65,14 @@ export default function Preview({ form }) {
 					</div>
 				</header>
 				<ul>
-					<li className={form.upgrades1.ischecked ? "checked" : null}>
-						{form.upgrades1.text ? form.upgrades1.text : "Empty"}
+					<li className={form.upgrades[0]["ischecked"] ? "checked" : null}>
+						{form.upgrades[0]["text"] ? form.upgrades[0]["text"] : "Text"}
 					</li>
-					<li className={form.upgrades2.ischecked ? "checked" : null}>
-						{form.upgrades2.text ? form.upgrades2.text : "Empty"}
+					<li className={form.upgrades[1]["ischecked"] ? "checked" : null}>
+					{form.upgrades[1]["text"] ? form.upgrades[1]["text"] : "Text"}
 					</li>
-					<li className={form.upgrades3.ischecked ? "checked" : null}>
-						{form.upgrades3.text ? form.upgrades3.text : "Empty"}
+					<li className={form.upgrades[2]["ischecked"] ? "checked" : null}>
+					{form.upgrades[2]["text"] ? form.upgrades[2]["text"] : "Text"}
 					</li>
 				</ul>
 			</section>

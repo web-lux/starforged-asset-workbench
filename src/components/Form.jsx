@@ -1,8 +1,20 @@
 import "./Form.scss";
 
 export default function Form({ form, setForm }) {
+	function handleArr(id, property, value) {
+		const newArr = form.upgrades.map(upgrade => {
+				if (upgrade.id === id) {
+					 return {...upgrade, [property]: value}
+				} else {
+					return upgrade
+				}
+			});
+		setForm({ ...form, upgrades: newArr });
+	}
+
 	return (
 		<div className="form">
+
 			<form>
 				<fieldset>
 					<legend>Interface</legend>
@@ -72,15 +84,7 @@ export default function Form({ form, setForm }) {
 							<textarea
 								name="Upgrade1"
 								id="Upgrade1"
-								onChange={(e) => {
-									setForm({
-										...form,
-										upgrades1: {
-											...form.upgrades1,
-											text: e.target.value,
-										},
-									});
-								}}
+								onChange={e => handleArr(0, "text", e.target.value)}
 							></textarea>
 						</div>
 						<div>
@@ -90,15 +94,7 @@ export default function Form({ form, setForm }) {
 								name="Upgrade1check"
 								id="Upgrade1check"
 								defaultChecked="true"
-								onChange={(e) =>
-									setForm({
-										...form,
-										upgrades1: {
-											...form.upgrades1,
-											ischecked: e.target.checked,
-										},
-									})
-								}
+								onChange={e => handleArr(0, "ischecked", e.target.checked)}
 							/>
 						</div>
 					</div>
@@ -110,15 +106,7 @@ export default function Form({ form, setForm }) {
 							<textarea
 								name="Upgrade2"
 								id="Upgrade2"
-								onChange={(e) =>
-									setForm({
-										...form,
-										upgrades2: {
-											...form.upgrades2,
-											text: e.target.value,
-										},
-									})
-								}
+								onChange={e => handleArr(1, "text", e.target.value)}
 							></textarea>
 						</div>
 
@@ -128,15 +116,7 @@ export default function Form({ form, setForm }) {
 								type="checkbox"
 								name="Upgrade2check"
 								id="Upgrade2check"
-								onChange={(e) =>
-									setForm({
-										...form,
-										upgrades2: {
-											...form.upgrades2,
-											ischecked: e.target.checked,
-										},
-									})
-								}
+								onChange={e => handleArr(1, "ischecked", e.target.checked)}
 							/>
 						</div>
 						
@@ -148,15 +128,7 @@ export default function Form({ form, setForm }) {
 							<textarea
 								name="Upgrade3"
 								id="Upgrade3"
-								onChange={(e) =>
-									setForm({
-										...form,
-										upgrades3: {
-											...form.upgrades3,
-											text: e.target.value,
-										},
-									})
-								}
+								onChange={e => handleArr(2, "text", e.target.value)}
 							></textarea>
 						</div>
 						<div>
@@ -165,15 +137,7 @@ export default function Form({ form, setForm }) {
 								type="checkbox"
 								name="Upgrade3check"
 								id="Upgrade3check"
-								onChange={(e) =>
-									setForm({
-										...form,
-										upgrades3: {
-											...form.upgrades3,
-											ischecked: e.target.checked,
-										},
-									})
-								}
+								onChange={e => handleArr(2, "ischecked", e.target.checked)}
 							/>
 						</div>
 					</div>
