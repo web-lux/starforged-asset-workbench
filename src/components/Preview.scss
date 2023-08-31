@@ -1,10 +1,7 @@
 .asset-preview:has(.module) {
-	&::before {
-		content: url(../assets/bg-colors/module-1.svg);
-	}
-	&::after {
-		content: url(../assets/bg-colors/module-2.svg);
-	}
+	background: url(../assets/bg-colors/module-1.svg) top -17px right 84px,
+		url(../assets/bg-colors/module-2.svg) top 55px right -31px;
+
 	.icon {
 		background-color: #d8cddd;
 	}
@@ -14,12 +11,9 @@
 }
 
 .asset-preview:has(.commandVehicle) {
-	&::before {
-		content: url(../assets/bg-colors/command-vehicle-1.svg);
-	}
-	&::after {
-		content: url(../assets/bg-colors/command-vehicle-2.svg);
-	}
+	background: url(../assets/bg-colors/command-vehicle-1.svg) top -16px right 84px,
+		url(../assets/bg-colors/command-vehicle-2.svg) top 55px right -31px;
+
 	.icon {
 		background-color: #e0e3e6;
 	}
@@ -29,12 +23,9 @@
 }
 
 .asset-preview:has(.supportVehicle) {
-	&::before {
-		content: url(../assets/bg-colors/support-vehicle-1.svg);
-	}
-	&::after {
-		content: url(../assets/bg-colors/support-vehicle-2.svg);
-	}
+	background: url(../assets/bg-colors/support-vehicle-1.svg) top -17px right 84px,
+		url(../assets/bg-colors/support-vehicle-2.svg) top 55px right -31px;
+
 	.icon {
 		background-color: #c8ccdd;
 	}
@@ -44,12 +35,9 @@
 }
 
 .asset-preview:has(.path) {
-	&::before {
-		content: url(../assets/bg-colors/path-1.svg);
-	}
-	&::after {
-		content: url(../assets/bg-colors/path-2.svg);
-	}
+	background: url(../assets/bg-colors/path-1.svg) top -17px right 84px,
+		url(../assets/bg-colors/path-2.svg) top 55px right -31px;
+
 	.icon {
 		background-color: #c4d8e5;
 	}
@@ -59,12 +47,9 @@
 }
 
 .asset-preview:has(.companion) {
-	&::before {
-		content: url(../assets/bg-colors/companion-1.svg);
-	}
-	&::after {
-		content: url(../assets/bg-colors/companion-2.svg);
-	}
+	background: url(../assets/bg-colors/companion-1.svg) top -17px right 84px,
+		url(../assets/bg-colors/companion-2.svg) top 55px right -31px;
+
 	.icon {
 		background-color: #c4dcdc;
 	}
@@ -74,12 +59,9 @@
 }
 
 .asset-preview:has(.deed) {
-	&::before {
-		content: url(../assets/bg-colors/deed-1.svg);
-	}
-	&::after {
-		content: url(../assets/bg-colors/deed-2.svg);
-	}
+	background: url(../assets/bg-colors/deed-1.svg) top -17px right 84px,
+		url(../assets/bg-colors/deed-2.svg) top 55px right -31px;
+
 	.icon {
 		background-color: #c4daca;
 	}
@@ -95,18 +77,7 @@
 	padding: 15px;
 	position: relative;
 	overflow: hidden;
-
-	&::before {
-		position: absolute;
-		top: -17px;
-		right: 84px;
-	}
-
-	&::after {
-		position: absolute;
-		right: -31px;
-		top: 55px;
-	}
+	background-repeat: no-repeat !important;
 
 	header {
 		position: relative;
@@ -168,47 +139,25 @@
 		}
 	}
 
-	li {
-		list-style: none;
-	}
-
 	ul.description {
 		display: flex;
 		flex-direction: column;
 		gap: 4px;
 
 		> li {
+			list-style: none;
 			font-family: var(--text);
 			position: relative;
-			margin-right: 15px;
-			margin-left: 30px;
 			font-size: 18px;
 			white-space: pre-line;
+			padding-left: 25px;
+			margin-right: 10px;
+			background-position: 0 2px;
+			background-repeat: no-repeat;
+			background-image: url(../assets/hex-border.svg);
 
-			&::before {
-				position: absolute;
-				left: -25px;
-				top: 3px;
-			}
-
-			&:not(.checked)::before {
-				content: url(../assets/hex-border.svg);
-			}
-
-			&.checked::before {
-				content: url(../assets/hex-filled.svg);
-			}
-
-			li {
-				display: flex;
-
-				&::before {
-					content: "✴";
-					font-size: 12px;
-					font-weight: bold;
-					margin-top: 3px;
-					margin-right: 4px;
-				}
+			&.checked {
+				background-image: url(../assets/hex-filled.svg);
 			}
 		}
 	}
