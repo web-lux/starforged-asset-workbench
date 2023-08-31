@@ -31,7 +31,7 @@ export default function Form({ form, setForm }) {
 
 					<div className="fieldgroup">
 						<div>
-							<label htmlFor="assetImage">Image</label>
+							<label htmlFor="assetImage">Image url</label>
 							<input
 								type="text"
 								name="assetImage"
