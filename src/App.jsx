@@ -7,7 +7,7 @@ function App() {
 		title: 'Title',
 		type: 'module',
     image: {
-      path: 'src/assets/owl.svg',
+      path: 'https://i.imgur.com/ZcnuoVg.png',
       size: "100%"
     },
     upgrades: [
