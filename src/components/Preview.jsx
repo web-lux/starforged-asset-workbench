@@ -5,7 +5,7 @@ import { toPng } from "html-to-image";
 export default function Preview({ form }) {
 	const ref = useRef(null);
 
-	const onButtonClick = useCallback(() => {
+	const saveImage = useCallback(() => {
 		if (ref.current === null) {
 			return;
 		}
@@ -79,7 +79,8 @@ export default function Preview({ form }) {
 					</li>
 				</ul>
 			</section>
-			<button onClick={onButtonClick}>DL</button>
+
+			<button onClick={saveImage}>Save as PNG</button>
 		</div>
 	);
 }
