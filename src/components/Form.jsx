@@ -18,9 +18,38 @@ export default function Form({ form, setForm }) {
 			...form,
 			image: {
 				...form.image,
-				size: percentage
-			}
+				size: percentage,
+			},
 		});
+	}
+
+	function handleType(value) {
+		let newType = {
+			className: value,
+		};
+
+		switch (value) {
+			case "commandVehicle":
+				newType = { ...newType, name: "Command Vehicle" };
+				break;
+			case "module":
+				newType = { ...newType, name: "Module" };
+				break;
+				case "supportVehicle":
+					newType = { ...newType, name: "Support Vehicle" };
+				break;
+				case "path":
+					newType = { ...newType, name: "Path" };
+				break;
+				case "companion":
+					newType = { ...newType, name: "Companion" };
+				break;
+				case "deed":
+					newType = { ...newType, name: "Deed" };
+					break;
+		}
+
+		setForm({...form, type: newType})
 	}
 
 	return (
@@ -41,8 +70,8 @@ export default function Form({ form, setForm }) {
 										...form,
 										image: {
 											...form.image,
-											path: e.target.value
-										}
+											path: e.target.value,
+										},
 									});
 								}}
 							/>
@@ -55,7 +84,7 @@ export default function Form({ form, setForm }) {
 								name="assetImageSize"
 								id="assetImageSize"
 								onChange={(e) => {
-									handleImageSize(e.target.value)
+									handleImageSize(e.target.value);
 								}}
 							/>
 						</div>
@@ -67,7 +96,9 @@ export default function Form({ form, setForm }) {
 							<select
 								name="assetType"
 								id="assetType"
-								onChange={(e) => setForm({ ...form, type: e.target.value })}
+								onChange={(e) => {
+									handleType(e.target.value);
+								}}
 								defaultValue="module"
 							>
 								<option value="commandVehicle">Command Vehicle</option>

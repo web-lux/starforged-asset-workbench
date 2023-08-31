@@ -5,7 +5,10 @@ import Form from './components/Form.jsx'
 function App() {
   const [form, setForm] = useState({
 		title: 'Title',
-		type: 'module',
+    type: {
+      name: "Module",
+      className: "module"
+    },
     image: {
       path: 'https://i.imgur.com/ZcnuoVg.png',
       size: "100%"

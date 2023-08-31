@@ -22,33 +22,12 @@ export default function Preview({ form }) {
 			});
 	}, [ref]);
 
-	function handleType(type) {
-		switch (type) {
-			case "commandVehicle":
-				return (
-					<span className="asset-type commandVehicle">Command Vehicle</span>
-				);
-			case "module":
-				return <span className="asset-type module">Module</span>;
-			case "supportVehicle":
-				return (
-					<span className="asset-type supportVehicle">Support Vehicle</span>
-				);
-			case "path":
-				return <span className="asset-type path">Path</span>;
-			case "companion":
-				return <span className="asset-type companion">Companion</span>;
-			case "deed":
-				return <span className="asset-type deed">Deed</span>;
-		}
-	}
-
 	return (
 		<div>
-			<section className="asset-preview module" ref={ref}>
+			<section className={`asset-preview ${form.type.className}`} ref={ref}>
 				<header>
 					<div className="title-container">
-						{handleType(form.type)}
+						<span className="asset-type">{form.type.name}</span>
 						<span className="asset-title">
 							{form.title ? form.title : "Title"}
 						</span>
@@ -57,7 +36,7 @@ export default function Preview({ form }) {
 						<div className="clip icon">
 							<img
 								src={form.image.path ? form.image.path : "src/assets/owl.svg"}
-								style={{width: form.image.size}}
+								style={{ width: form.image.size }}
 							/>
 							<svg xmlns="http://www.w3.org/2000/svg" height="0" width="0">
 								<clipPath id="svg-hex" clipPathUnits="objectBoundingBox">
@@ -72,10 +51,10 @@ export default function Preview({ form }) {
 						{form.upgrades[0]["text"] ? form.upgrades[0]["text"] : "Text"}
 					</li>
 					<li className={form.upgrades[1]["ischecked"] ? "checked" : null}>
-					{form.upgrades[1]["text"] ? form.upgrades[1]["text"] : "Text"}
+						{form.upgrades[1]["text"] ? form.upgrades[1]["text"] : "Text"}
 					</li>
 					<li className={form.upgrades[2]["ischecked"] ? "checked" : null}>
-					{form.upgrades[2]["text"] ? form.upgrades[2]["text"] : "Text"}
+						{form.upgrades[2]["text"] ? form.upgrades[2]["text"] : "Text"}
 					</li>
 				</ul>
 			</section>
