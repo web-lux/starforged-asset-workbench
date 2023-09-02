@@ -1,51 +1,151 @@
 .form {
-	border: solid black 5px;
-	justify-self: center;
-	padding: 15px 10px 10px;
+	border: solid var(--black) 2px;
+	padding: 30px;
+	position: relative;
 
-	form {
+	ul {
+		list-style-type: none;
 		display: flex;
-		flex-direction: column;
 		gap: 15px;
+		margin-bottom: 20px;
 
-		fieldset {
-			padding: 10px;
-			border: none;
+		li {
+			font-family: var(--ui);
+			font-weight: 700;
+			font-size: 24px;
+			color: var(--grey);
 
-			legend {
-				font-family: var(--title);
-				font-weight: 900;
-				font-size: 20px;
-				margin-bottom: -5px;
+			&:hover {
+				cursor: pointer;
+			}
+
+			&.active {
+				color: var(--black);
+				transform: translateX(0%);
 			}
 		}
+	}
 
-		label {
-			display: block;
-			font-size: 18px;
-			color: #545454;
-			margin-bottom: 4px;
-		}
+	form {
+		fieldset {
+			border: none;
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
 
-		input[type="text"],
-		select,
-		option,
-		textarea {
-			width: 350px;
-		}
-
-		textarea {
-			resize: none;
-			min-height: 150px;
-			font-family: inherit;
-			font-size: 16px;
-			padding: 4px 6px;
+			&:not(.visible) {
+				display: none;
+			}
 		}
 
 		.fieldgroup {
 			display: flex;
 			align-items: start;
+			flex-wrap: wrap;
 			gap: 20px;
+		}
+
+		label {
+			display: block;
+			font-family: var(--ui);
+			font-weight: 600;
+			font-size: 16px;
+			margin-bottom: 6px;
+		}
+
+		input[type="text"],
+		select,
+		textarea,
+		input[type="range"],
+		label {
+			width: 200px;
+		}
+
+		input[type="text"],
+		select {
+			border: none;
+			border-bottom: solid var(--black) 2px;
+			padding: 4px 0px;
+			font-family: var(--ui);
+
+			&:focus {
+				outline: none;
+				border-bottom: var(--red) solid 2px;
+			}
+		}
+
+		input[type="range"] {
+			-webkit-appearance: none;
+			appearance: none;
+			background: transparent;
+			cursor: pointer;
+		}
+
+		$track-height: 5px;
+		$thumb-height: 15px;
+
+		input[type="range"]::-webkit-slider-runnable-track {
+			background: white;
+			border: solid 2px var(--black);
+			height: $track-height;
+			border-radius: 5px;
+			transform: translateY(13px);
+		}
+
+		input[type="range"]::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			margin-top: calc(($track-height / 2) - ($thumb-height / 2) - 2px);
+			background: white;
+			border: var(--black) 2px solid;
+			border-radius: 50%;
+			height: $thumb-height;
+			width: 15px;
+
+			&:active {
+				background: var(--black);
+			}
+		}
+
+		textarea {
+			resize: none;
+			min-height: 105px;
+			font-size: 14px;
+			padding: 4px 6px;
+			border: solid var(--black) 2px;
+			font-family: var(--ui);
+
+			&:focus {
+				outline: none;
+				border: var(--red) solid 2px;
+			}
+		}
+
+		input[type="checkbox"] {
+			appearance: none;
+			cursor: pointer;
+			position: relative;
+
+			&::before {
+				content: "";
+				display: block;
+				height: 11px;
+				width: 11px;
+				border: 2px solid black;
+				box-shadow: 1px 1px 0px 0px var(--black), 2px 2px 0px 0px var(--black);
+				top: 0;
+				left: 0;
+			}
+
+			&:checked {
+				&::after {
+					content: "X";
+					font-weight: 800;
+					font-size: 12px;
+					position: absolute;
+					bottom: -1px;
+					left: 3px;
+				}
+			}
 		}
 	}
 }

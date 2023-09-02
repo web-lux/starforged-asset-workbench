@@ -72,11 +72,14 @@
 
 .asset-preview {
 	& ~ button {
+		font-family: var(--ui);
 		width: 100%;
-		margin-top: 15px;
-		padding: 5px 0;
-		border-radius: none;
-		border: solid black 1px;
+		margin-top: 10px;
+		padding: 8px 0;
+		border-radius: 2px;
+		background: var(--black);
+		color: white;
+		border: none;
 
 		&:hover {
 			cursor: pointer;
@@ -85,7 +88,7 @@
 
 	min-height: 525px;
 	width: 375px;
-	border: black 2px solid;
+	border: var(--black) 2px solid;
 	padding: 15px;
 	background-repeat: no-repeat !important;
 
@@ -128,7 +131,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			background-color: black;
+			background-color: var(--black);
 			height: $height;
 			width: $width;
 			position: absolute;

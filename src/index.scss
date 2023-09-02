@@ -1,5 +1,7 @@
 /* #region Fonts Declaration */
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 @font-face {
 	font-family: "Proxima Nova Condensed Regular";
 	font-style: normal;
@@ -27,16 +29,14 @@
 	font-family: "Poster Gothic Round ATF";
 	font-style: normal;
 	font-weight: bold;
-	src: local("Poster Gothic Round ATF"),
-		url("./assets/fonts/PosterGothicRoundATFBold.otf") format("opentype");
+	src: url("./assets/fonts/PosterGothicRoundATFBold.otf") format("opentype");
 }
 
 @font-face {
 	font-family: "Poster Gothic Round ATF";
 	font-style: normal;
 	font-weight: 900;
-	src: local("Poster Gothic Round ATF"),
-		url("./assets/fonts/PosterGothicRoundATFHeavy.otf") format("opentype");
+	src: url("./assets/fonts/PosterGothicRoundATFHeavy.otf") format("opentype");
 }
 
 /* #endregion */
@@ -44,8 +44,14 @@
 /* #region Global Variables */
 
 :root {
-	--title: "Poster Gothic Round ATF";
-	--text: "Proxima Nova Condensed Regular";
+	--title: "Poster Gothic Round ATF", sans-serif;
+	--text: "Proxima Nova Condensed Regular", "Segoe UI", Tahoma, Geneva, Verdana,
+		sans-serif;
+	--ui: "Inter", sans-serif;
+	--black: #131a1c;
+	--red: #cf242b;
+	--l-grey: #dbe0e8;
+	--grey: #8e8e8e;
 }
 
 /* #endregion */
@@ -61,31 +67,72 @@
 
 /* #endregion */
 
-h1 {
-	font-size: 34px;
-}
-
 .wrapper {
 	min-height: 100vh;
-	padding: 20px 30px;
-	font-family: var(--text), "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-	color: #231f20;
+	font-family: var(--text);
+	color: var(--black);
 	display: grid;
-	grid-template-rows: auto 1fr auto;
-	row-gap: 20px;
+	grid-template-rows: 1fr 40px;
 
-	> main {
+	.main-container {
+		gap: 20px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		justify-self: center;
+		max-width: 900px;
+		margin: 40px 20px;
+
+		@media screen and (max-width: 900px) {
+			header.main-header {
+				margin-bottom: 20px;
+				max-width: 700px;
+				text-align: center;
+			}
+		}
+	}
+
+	header.main-header {
 		display: grid;
 		grid-template-columns: auto 1fr;
-		column-gap: 20px;
-		align-items: start;
+		align-items: center;
+		gap: 20px;
+
+		h1 {
+			font-size: 36px;
+			font-family: var(--ui);
+			font-weight: 700;
+			background: url(./assets/stars.gif);
+			background-clip: text;
+			-webkit-background-clip: text;
+			color: transparent;
+		}
+
+		svg {
+			margin-top: 10px;
+			height: 24px;
+		}
+	}
+
+	main {
+		gap: 40px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 	}
 
 	footer {
+		background: var(--l-grey);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-top: solid var(--black) 1px;
+
 		a {
 			text-decoration: none;
 			font-weight: bold;
-			color: #231f20;
+			color: inherit;
 		}
 	}
 }

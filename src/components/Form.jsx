@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./Form.scss";
 
 export default function Form({ form, setForm }) {
@@ -35,28 +36,56 @@ export default function Form({ form, setForm }) {
 			case "module":
 				newType = { ...newType, name: "Module" };
 				break;
-				case "supportVehicle":
-					newType = { ...newType, name: "Support Vehicle" };
+			case "supportVehicle":
+				newType = { ...newType, name: "Support Vehicle" };
 				break;
-				case "path":
-					newType = { ...newType, name: "Path" };
+			case "path":
+				newType = { ...newType, name: "Path" };
 				break;
-				case "companion":
-					newType = { ...newType, name: "Companion" };
+			case "companion":
+				newType = { ...newType, name: "Companion" };
 				break;
-				case "deed":
-					newType = { ...newType, name: "Deed" };
-					break;
+			case "deed":
+				newType = { ...newType, name: "Deed" };
+				break;
 		}
 
-		setForm({...form, type: newType})
+		setForm({ ...form, type: newType });
+	}
+
+	const [selection, setSelection] = useState("interface");
+
+	function changePanel(value) {
+		setSelection(value);
 	}
 
 	return (
 		<div className="form">
 			<form>
-				<fieldset>
-					<legend>Interface</legend>
+				<nav>
+					<ul>
+						<li
+							onClick={(e) => {
+								changePanel("interface");
+							}}
+							className={selection === "interface" ? "active" : null}
+						>
+							Interface
+						</li>
+
+						<li
+							onClick={(e) => {
+								changePanel("upgrades");
+							}}
+							className={selection === "upgrades" ? "active" : null}
+						>
+							Upgrades
+						</li>
+					</ul>
+				</nav>
+
+				<fieldset className={selection === "interface" ? "visible" : null}>
+					<legend hidden>Interface</legend>
 
 					<div className="fieldgroup">
 						<div>
@@ -122,8 +151,8 @@ export default function Form({ form, setForm }) {
 					</div>
 				</fieldset>
 
-				<fieldset>
-					<legend>Upgrades</legend>
+				<fieldset className={selection === "upgrades" ? "upgrades visible" : null}>
+					<legend hidden>Upgrades</legend>
 
 					<div className="fieldgroup">
 						<div>
@@ -176,6 +205,7 @@ export default function Form({ form, setForm }) {
 								onChange={(e) => handleArr(2, "text", e.target.value)}
 							></textarea>
 						</div>
+
 						<div>
 							<label htmlFor="Upgrade3check">Checked ?</label>
 							<input
