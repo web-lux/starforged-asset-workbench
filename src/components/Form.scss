@@ -67,6 +67,7 @@
 			border-bottom: solid var(--black) 2px;
 			padding: 4px 0px;
 			font-family: var(--ui);
+			background-color: transparent;
 
 			&:focus {
 				outline: none;
@@ -79,6 +80,12 @@
 			appearance: none;
 			background: transparent;
 			cursor: pointer;
+		}
+
+		@supports (-moz-appearance: none) {
+			input[type="range"] {
+				appearance: auto;
+			}
 		}
 
 		$track-height: 5px;
