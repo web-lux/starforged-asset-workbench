@@ -31,6 +31,12 @@ export default function Preview({ form }) {
 						<span className="asset-title">
 							{form.title ? form.title : "Title"}
 						</span>
+						<span className="asset-description">
+							{form.description ? form.description : ""}
+						</span>
+						<span className={`asset-additional-field ${form.hasAdditionalField}`}>
+							{form.additionalField ? form.additionalField : "Additional field"}
+						</span>
 					</div>
 					<div className="clip icon-container">
 						<div className="clip icon">
