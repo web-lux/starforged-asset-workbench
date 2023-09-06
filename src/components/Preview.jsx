@@ -31,6 +31,18 @@ export default function Preview({ form }) {
 						<span className="asset-title">
 							{form.title ? form.title : "Title"}
 						</span>
+						{form.description &&
+						/* Render the HTML element only if form.description has content */
+							<span className="asset-description">
+							{form.description}
+							</span>
+						}
+						{form.hasAdditionalField &&
+						/* Render the HTML element only if form.hasAdditionalField returns true */
+							<span className={"asset-additional-field"}>
+							{form.additionalField ? form.additionalField : "Additional field"}
+						</span>
+						}
 					</div>
 					<div className="clip icon-container">
 						<div className="clip icon">

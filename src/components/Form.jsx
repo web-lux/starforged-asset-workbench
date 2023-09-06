@@ -149,6 +149,36 @@ export default function Form({ form, setForm }) {
 							/>
 						</div>
 					</div>
+
+					<div className="fieldgroup">
+						<div>
+							<label htmlFor="assetDescription">Description</label>
+							<input
+								type="text"
+								name="assetDescription"
+								id="assetDescription"
+								onChange={(e) => setForm({ ...form, description: e.target.value })}
+							/>
+						</div>
+
+						<div>
+							<label htmlFor="assetAdditionalField">Additional field</label>
+							<input
+								type="checkbox"
+								name="AdditionalFieldCheck"
+								id="AdditionalFieldCheck"
+								onChange={(e) => {setForm({ ...form, hasAdditionalField: e.target.checked});
+								}}
+							/>
+							<input
+								type="text"
+								name="assetAdditionalField"
+								id="assetAdditionalField"
+								onChange={(e) => setForm({ ...form, additionalField: e.target.value })}
+							/>
+						</div>
+
+					</div>
 				</fieldset>
 
 				<fieldset className={selection === "upgrades" ? "upgrades visible" : null}>
