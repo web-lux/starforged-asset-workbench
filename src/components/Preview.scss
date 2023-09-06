@@ -122,6 +122,9 @@
 			span.asset-description {
 				font-family: var(--text);
 				font-size: 18px;
+				word-wrap: break-word;
+				padding-right: 85px;
+				margin-bottom: 10px;
 			}
 
 			span.asset-additional-field {
