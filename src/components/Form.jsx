@@ -167,8 +167,7 @@ export default function Form({ form, setForm }) {
 								type="checkbox"
 								name="AdditionalFieldCheck"
 								id="AdditionalFieldCheck"
-								onChange={(e) => {setForm({ ...form, hasAdditionalField: e.target.checked ? "visible" : null});
-								console.log(form.hasAdditionalField);
+								onChange={(e) => {setForm({ ...form, hasAdditionalField: e.target.checked});
 								}}
 							/>
 							<input

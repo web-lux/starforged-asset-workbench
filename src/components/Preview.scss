@@ -119,9 +119,9 @@
 				font-weight: 700;
 			}
 
-			span.asset-description{
-			font-family: var(--text);
-			font-size: 18px;
+			span.asset-description {
+				font-family: var(--text);
+				font-size: 18px;
 			}
 
 			span.asset-additional-field {
@@ -131,10 +131,8 @@
 				width: 250px;
 				font-weight: 700;
 				color: #cbcfd4;
-
-				&:not(.visible) {
-					display: none;
-				}
+				word-wrap: break-word;
+				margin-bottom: 20px;
 			}
 		}
 
