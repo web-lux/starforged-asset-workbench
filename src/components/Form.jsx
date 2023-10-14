@@ -165,7 +165,7 @@ export default function Form({ form, setForm }) {
 
 					<div className="fieldgroup">
 						<div>
-							<label htmlFor="assetAdditionalField">Additional field</label>
+							<label htmlFor="assetAdditionalField1">Additional field 1</label>
 							<input
 								type="checkbox"
 								name="AdditionalFieldCheck1"
@@ -182,7 +182,7 @@ export default function Form({ form, setForm }) {
 							/>
 						</div>
 						<div>
-							<label htmlFor="assetAdditionalField">Additional field</label>
+							<label htmlFor="assetAdditionalField2">Additional field 2</label>
 							<input
 								type="checkbox"
 								name="AdditionalFieldCheck2"

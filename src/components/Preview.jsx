@@ -38,13 +38,13 @@ export default function Preview({ form }) {
 							</span>
 						}
 						{form.hasAdditionalField1 &&
-						/* Render the HTML element only if form.hasAdditionalField returns true */
+						/* Render the HTML element only if form.hasAdditionalField1 returns true */
 							<span className={"asset-additional-field"}>
 							{form.additionalField1 ? form.additionalField1 : "Additional field 1"}
 						</span>
 						}
 						{form.hasAdditionalField2 &&
-							/* Render the HTML element only if form.hasAdditionalField returns true */
+							/* Render the HTML element only if form.hasAdditionalField2 returns true */
 							<span className={"asset-additional-field"}>
 							{form.additionalField2 ? form.additionalField2 : "Additional field 2"}
 						</span>
