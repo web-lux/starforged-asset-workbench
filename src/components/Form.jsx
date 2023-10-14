@@ -164,7 +164,6 @@ export default function Form({ form, setForm }) {
 					</div>
 
 					<div className="fieldgroup">
-						{/*TODO: add a second additional field (make an array?)*/}
 						<div>
 							<label htmlFor="assetAdditionalField">Additional field</label>
 							<input
