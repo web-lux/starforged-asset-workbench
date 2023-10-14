@@ -161,22 +161,47 @@ export default function Form({ form, setForm }) {
 							/>
 						</div>
 
+					</div>
+
+					<div className="fieldgroup">
+						{/*TODO: add a second additional field (make an array?)*/}
 						<div>
 							<label htmlFor="assetAdditionalField">Additional field</label>
 							<input
 								type="checkbox"
-								name="AdditionalFieldCheck"
-								id="AdditionalFieldCheck"
-								onChange={(e) => {setForm({ ...form, hasAdditionalField: e.target.checked});
+								name="AdditionalFieldCheck1"
+								id="AdditionalFieldCheck1"
+								onChange={(e) => {
+									setForm({...form, hasAdditionalField1: e.target.checked});
 								}}
 							/>
 							<input
 								type="text"
-								name="assetAdditionalField"
-								id="assetAdditionalField"
-								onChange={(e) => setForm({ ...form, additionalField: e.target.value })}
+								name="assetAdditionalField1"
+								id="assetAdditionalField1"
+								onChange={(e) => setForm({...form, additionalField1: e.target.value})}
 							/>
 						</div>
+						<div>
+							<label htmlFor="assetAdditionalField">Additional field</label>
+							<input
+								type="checkbox"
+								name="AdditionalFieldCheck2"
+								id="AdditionalFieldCheck2"
+								onChange={(e) => {
+									setForm({...form, hasAdditionalField2: e.target.checked});
+								}}
+							/>
+							<input
+								type="text"
+								name="assetAdditionalField2"
+								id="assetAdditionalField2"
+								onChange={(e) => setForm({...form, additionalField2: e.target.value})}
+							/>
+						</div>
+					</div>
+					<div>
+
 
 					</div>
 				</fieldset>

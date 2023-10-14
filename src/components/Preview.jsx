@@ -37,10 +37,16 @@ export default function Preview({ form }) {
 							{form.description}
 							</span>
 						}
-						{form.hasAdditionalField &&
+						{form.hasAdditionalField1 &&
 						/* Render the HTML element only if form.hasAdditionalField returns true */
 							<span className={"asset-additional-field"}>
-							{form.additionalField ? form.additionalField : "Additional field"}
+							{form.additionalField1 ? form.additionalField1 : "Additional field 1"}
+						</span>
+						}
+						{form.hasAdditionalField2 &&
+							/* Render the HTML element only if form.hasAdditionalField returns true */
+							<span className={"asset-additional-field"}>
+							{form.additionalField2 ? form.additionalField2 : "Additional field 2"}
 						</span>
 						}
 					</div>
