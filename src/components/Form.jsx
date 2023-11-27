@@ -179,7 +179,6 @@ export default function Form({ form, setForm }) {
 								id="AssetTrackCheck"
 								onChange={(e) => setForm({ ...form, hasTrack: e.target.checked })}
 							/>
-							{/*TODO CSS asset track*/}
 							<input
 								type="number"
 								name="assetTrack"

@@ -75,7 +75,6 @@ export default function Preview({ form }) {
 						{form.upgrades[2]["text"] ? form.upgrades[2]["text"] : "Text"}
 					</li>
 				</ul>
-				{/*TODO affichage track*/}
 				{form.hasTrack &&
 					<div class="asset-track">
 							{(() => {
