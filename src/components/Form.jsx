@@ -13,6 +13,17 @@ export default function Form({ form, setForm }) {
 		setForm({ ...form, upgrades: newArr });
 	}
 
+	function handleAddField(id, property, value) {
+		const newArr = form.additionalFields.map((additionalField) => {
+			if (additionalField.id === id) {
+				return { ...additionalField, [property]: value };
+			} else {
+				return additionalField;
+			}
+		});
+		setForm({ ...form, additionalFields: newArr });
+	}
+
 	function handleImageSize(value) {
 		const percentage = value + "%";
 		setForm({
@@ -170,15 +181,13 @@ export default function Form({ form, setForm }) {
 								type="checkbox"
 								name="AdditionalFieldCheck1"
 								id="AdditionalFieldCheck1"
-								onChange={(e) => {
-									setForm({...form, hasAdditionalField1: e.target.checked});
-								}}
+								onChange={(e) => handleAddField(0, "hasAdditionalField", e.target.checked)}
 							/>
 							<input
 								type="text"
 								name="assetAdditionalField1"
 								id="assetAdditionalField1"
-								onChange={(e) => setForm({...form, additionalField1: e.target.value})}
+								onChange={(e) => handleAddField(0, "text", e.target.value)}
 							/>
 						</div>
 						<div>
@@ -187,15 +196,13 @@ export default function Form({ form, setForm }) {
 								type="checkbox"
 								name="AdditionalFieldCheck2"
 								id="AdditionalFieldCheck2"
-								onChange={(e) => {
-									setForm({...form, hasAdditionalField2: e.target.checked});
-								}}
+								onChange={(e) => handleAddField(1, "hasAdditionalField", e.target.checked)}
 							/>
 							<input
 								type="text"
 								name="assetAdditionalField2"
 								id="assetAdditionalField2"
-								onChange={(e) => setForm({...form, additionalField2: e.target.value})}
+								onChange={(e) => handleAddField(1, "text", e.target.value)}
 							/>
 						</div>
 					</div>

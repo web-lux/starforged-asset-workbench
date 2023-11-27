@@ -24,6 +24,7 @@ export default function Preview({ form }) {
 
 	return (
 		<div>
+			<div>{form.additionalFields[0]["hasAdditionalField"]}</div>
 			<section className={`asset-preview ${form.type.className}`} ref={ref}>
 				<header>
 					<div className="title-container">
@@ -37,16 +38,16 @@ export default function Preview({ form }) {
 							{form.description}
 							</span>
 						}
-						{form.hasAdditionalField1 &&
+						{form.additionalFields[0]["hasAdditionalField"] &&
 						/* Render the HTML element only if form.hasAdditionalField1 returns true */
 							<span className={"asset-additional-field"}>
-							{form.additionalField1 ? form.additionalField1 : "Additional field 1"}
+							{form.additionalFields[0]["text"] ? form.additionalFields[0]["text"] : "FIELD"}
 						</span>
 						}
-						{form.hasAdditionalField2 &&
+						{form.additionalFields[1]["hasAdditionalField"] &&
 							/* Render the HTML element only if form.hasAdditionalField2 returns true */
 							<span className={"asset-additional-field"}>
-							{form.additionalField2 ? form.additionalField2 : "Additional field 2"}
+							{form.additionalFields[1]["text"] ? form.additionalFields[1]["text"] : "FIELD"}
 						</span>
 						}
 					</div>
