@@ -86,11 +86,12 @@
 		}
 	}
 
-	min-height: 525px;
+	height: 525px;
 	width: 375px;
 	border: var(--black) 2px solid;
 	padding: 15px;
 	background-repeat: no-repeat !important;
+	position: relative;
 
 	header {
 		position: relative;
@@ -186,6 +187,26 @@
 			&.checked {
 				background-image: url(../assets/hex-filled.svg);
 			}
+		}
+	}
+
+	.asset-track{
+		display: flex;
+		position: absolute;
+		bottom: 15px;
+		.asset-track-hex{
+			background-image: url(../assets/hex-border-track.svg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			height: 38px;
+			width: 34px;
+			text-align: center;
+			line-height: 40px;
+			font-family: var(--title);
+			font-size: 14px;
+			color: #C7CACF;
+			font-weight: 700;
+			margin-left: -5px;
 		}
 	}
 }

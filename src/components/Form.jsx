@@ -171,6 +171,24 @@ export default function Form({ form, setForm }) {
 								onChange={(e) => setForm({ ...form, description: e.target.value })}
 							/>
 						</div>
+						<div>
+							<label htmlFor="assetTrack">Track</label>
+							<input
+								type="checkbox"
+								name="AssetTrackCheck"
+								id="AssetTrackCheck"
+								onChange={(e) => setForm({ ...form, hasTrack: e.target.checked })}
+							/>
+							{/*TODO CSS asset track*/}
+							<input
+								type="number"
+								name="assetTrack"
+								id="assetTrack"
+								min="1"
+								max="6"
+								onChange={(e) => setForm({ ...form, track: e.target.value })}
+							/>
+						</div>
 
 					</div>
 

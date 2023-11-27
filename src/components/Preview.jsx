@@ -24,7 +24,6 @@ export default function Preview({ form }) {
 
 	return (
 		<div>
-			<div>{form.additionalFields[0]["hasAdditionalField"]}</div>
 			<section className={`asset-preview ${form.type.className}`} ref={ref}>
 				<header>
 					<div className="title-container">
@@ -76,6 +75,20 @@ export default function Preview({ form }) {
 						{form.upgrades[2]["text"] ? form.upgrades[2]["text"] : "Text"}
 					</li>
 				</ul>
+				{/*TODO affichage track*/}
+				{form.hasTrack &&
+					<div class="asset-track">
+							{(() => {
+								const track = [];
+
+								for (let i = form.track; i >= 0; i--) {
+									track.push(<div class="asset-track-hex">{i}</div>);
+								}
+
+								return track;
+							})()}
+					</div>
+				}
 			</section>
 
 			<button onClick={saveImage}>Save as PNG</button>
