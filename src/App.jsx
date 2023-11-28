@@ -84,8 +84,8 @@ function App() {
 
 			<footer>
 				<span>
-					Created by <a href="https://web-lux.fr/">web-lux</a>. For{" "}
-					<a href="https://www.ironswornrpg.com/">Ironsworn : Starforged</a> by
+					Created by <a href="https://web-lux.fr/">web-lux</a>. With help from <a href="https://github.com/elodie-28">elodie-28</a>. For{" "}
+					<a href="https://www.ironswornrpg.com/">Ironsworn: Starforged</a> by
 					Shawn Tomkin.
 				</span>
 			</footer>
