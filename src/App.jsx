@@ -13,6 +13,18 @@ function App() {
 			path: "https://i.imgur.com/ZcnuoVg.png",
 			size: "100%",
 		},
+		additionalFields: [
+			{
+				id: 0,
+				hasAdditionalField: false,
+				text: `FIELD`,
+			},
+			{
+				id: 1,
+				hasAdditionalField: false,
+				text: `FIELD`,
+			},
+		],
 		upgrades: [
 			{
 				id: 0,
@@ -72,8 +84,8 @@ function App() {
 
 			<footer>
 				<span>
-					Created by <a href="https://web-lux.fr/">web-lux</a>. For{" "}
-					<a href="https://www.ironswornrpg.com/">Ironsworn : Starforged</a> by
+					Created by <a href="https://web-lux.fr/">web-lux</a>. With help from <a href="https://github.com/elodie-28">elodie-28</a>. For{" "}
+					<a href="https://www.ironswornrpg.com/">Ironsworn: Starforged</a> by
 					Shawn Tomkin.
 				</span>
 			</footer>

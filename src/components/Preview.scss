@@ -86,11 +86,12 @@
 		}
 	}
 
-	min-height: 525px;
+	height: 525px;
 	width: 375px;
 	border: var(--black) 2px solid;
 	padding: 15px;
 	background-repeat: no-repeat !important;
+	position: relative;
 
 	header {
 		position: relative;
@@ -130,12 +131,12 @@
 			span.asset-additional-field {
 				border-bottom: solid var(--black) 2px;
 				font-family: var(--title);
-				font-size: 15px;
+				font-size: 12px;
 				width: 250px;
 				font-weight: 700;
 				color: #cbcfd4;
 				word-wrap: break-word;
-				margin-bottom: 20px;
+				margin-bottom: 6px;
 			}
 		}
 
@@ -186,6 +187,26 @@
 			&.checked {
 				background-image: url(../assets/hex-filled.svg);
 			}
+		}
+	}
+
+	.asset-track{
+		display: flex;
+		position: absolute;
+		bottom: 15px;
+		.asset-track-hex{
+			background-image: url(../assets/hex-border-track.svg);
+			background-repeat: no-repeat;
+			background-size: cover;
+			height: 38px;
+			width: 34px;
+			text-align: center;
+			line-height: 40px;
+			font-family: var(--title);
+			font-size: 14px;
+			color: #C7CACF;
+			font-weight: 700;
+			margin-left: -5px;
 		}
 	}
 }

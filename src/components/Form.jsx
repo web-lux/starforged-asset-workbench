@@ -13,6 +13,17 @@ export default function Form({ form, setForm }) {
 		setForm({ ...form, upgrades: newArr });
 	}
 
+	function handleAddField(id, property, value) {
+		const newArr = form.additionalFields.map((additionalField) => {
+			if (additionalField.id === id) {
+				return { ...additionalField, [property]: value };
+			} else {
+				return additionalField;
+			}
+		});
+		setForm({ ...form, additionalFields: newArr });
+	}
+
 	function handleImageSize(value) {
 		const percentage = value + "%";
 		setForm({
@@ -160,23 +171,60 @@ export default function Form({ form, setForm }) {
 								onChange={(e) => setForm({ ...form, description: e.target.value })}
 							/>
 						</div>
-
 						<div>
-							<label htmlFor="assetAdditionalField">Additional field</label>
+							<label htmlFor="assetTrack">Track</label>
 							<input
 								type="checkbox"
-								name="AdditionalFieldCheck"
-								id="AdditionalFieldCheck"
-								onChange={(e) => {setForm({ ...form, hasAdditionalField: e.target.checked});
-								}}
+								name="AssetTrackCheck"
+								id="AssetTrackCheck"
+								onChange={(e) => setForm({ ...form, hasTrack: e.target.checked })}
+							/>
+							<input
+								type="number"
+								name="assetTrack"
+								id="assetTrack"
+								min="1"
+								max="6"
+								onChange={(e) => setForm({ ...form, track: e.target.value })}
+							/>
+						</div>
+
+					</div>
+
+					<div className="fieldgroup">
+						<div>
+							<label htmlFor="assetAdditionalField1">Additional field 1</label>
+							<input
+								type="checkbox"
+								name="AdditionalFieldCheck1"
+								id="AdditionalFieldCheck1"
+								onChange={(e) => handleAddField(0, "hasAdditionalField", e.target.checked)}
 							/>
 							<input
 								type="text"
-								name="assetAdditionalField"
-								id="assetAdditionalField"
-								onChange={(e) => setForm({ ...form, additionalField: e.target.value })}
+								name="assetAdditionalField1"
+								id="assetAdditionalField1"
+								onChange={(e) => handleAddField(0, "text", e.target.value)}
 							/>
 						</div>
+						<div>
+							<label htmlFor="assetAdditionalField2">Additional field 2</label>
+							<input
+								type="checkbox"
+								name="AdditionalFieldCheck2"
+								id="AdditionalFieldCheck2"
+								onChange={(e) => handleAddField(1, "hasAdditionalField", e.target.checked)}
+							/>
+							<input
+								type="text"
+								name="assetAdditionalField2"
+								id="assetAdditionalField2"
+								onChange={(e) => handleAddField(1, "text", e.target.value)}
+							/>
+						</div>
+					</div>
+					<div>
+
 
 					</div>
 				</fieldset>

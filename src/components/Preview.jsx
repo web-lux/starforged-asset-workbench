@@ -37,10 +37,16 @@ export default function Preview({ form }) {
 							{form.description}
 							</span>
 						}
-						{form.hasAdditionalField &&
-						/* Render the HTML element only if form.hasAdditionalField returns true */
+						{form.additionalFields[0]["hasAdditionalField"] &&
+						/* Render the HTML element only if form.hasAdditionalField1 returns true */
 							<span className={"asset-additional-field"}>
-							{form.additionalField ? form.additionalField : "Additional field"}
+							{form.additionalFields[0]["text"] ? form.additionalFields[0]["text"] : "FIELD"}
+						</span>
+						}
+						{form.additionalFields[1]["hasAdditionalField"] &&
+							/* Render the HTML element only if form.hasAdditionalField2 returns true */
+							<span className={"asset-additional-field"}>
+							{form.additionalFields[1]["text"] ? form.additionalFields[1]["text"] : "FIELD"}
 						</span>
 						}
 					</div>
@@ -69,6 +75,19 @@ export default function Preview({ form }) {
 						{form.upgrades[2]["text"] ? form.upgrades[2]["text"] : "Text"}
 					</li>
 				</ul>
+				{form.hasTrack &&
+					<div class="asset-track">
+							{(() => {
+								const track = [];
+
+								for (let i = form.track; i >= 0; i--) {
+									track.push(<div class="asset-track-hex">{i}</div>);
+								}
+
+								return track;
+							})()}
+					</div>
+				}
 			</section>
 
 			<button onClick={saveImage}>Save as PNG</button>

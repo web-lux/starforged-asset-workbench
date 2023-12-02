@@ -66,7 +66,8 @@
 			width : 170px;
 		}
 
-		input[type="checkbox"]:not(:checked) + input[type="text"]{
+		input[type="checkbox"]:not(:checked) + input[type="text"],
+		input[type="checkbox"]:not(:checked) + input[type="number"]{
 			display: none;
 		}
 
@@ -89,6 +90,19 @@
 			appearance: none;
 			background: transparent;
 			cursor: pointer;
+		}
+
+		input[type="number"]{
+			padding: 1px 5px;
+			width: 50px;
+			font-family: var(--ui);
+			background-color: transparent;
+			margin-left: 10px;
+
+			&:focus {
+				outline: none;
+				border-bottom: var(--red) solid 2px;
+			}
 		}
 
 		@supports (-moz-appearance: none) {
