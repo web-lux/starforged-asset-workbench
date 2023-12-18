@@ -1,8 +1,3 @@
-# React + Vite
+# Starforged Asset Workbench
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Inspired by effortlessmoutain's [Asset Workbench](https://github.com/effortlessmountain/ironsworn-asset-workbench), the *Starforged Asset Workbench* can be used to create custom assets for [Ironsworn : Starforged](https://www.ironswornrpg.com/product-ironsworn-starforged) while keeping the same aesthetic as the game's default assets.
