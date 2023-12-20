@@ -66,10 +66,6 @@ export default function Form({ form, setForm }) {
 
 	const [selection, setSelection] = useState("interface");
 
-	function changePanel(value) {
-		setSelection(value);
-	}
-
 	return (
 		<div className="form">
 			<form>
@@ -77,7 +73,7 @@ export default function Form({ form, setForm }) {
 					<ul>
 						<li
 							onClick={(e) => {
-								changePanel("interface");
+								setSelection("interface")
 							}}
 							className={selection === "interface" ? "active" : null}
 						>
@@ -86,7 +82,7 @@ export default function Form({ form, setForm }) {
 
 						<li
 							onClick={(e) => {
-								changePanel("upgrades");
+								setSelection("upgrades")
 							}}
 							className={selection === "upgrades" ? "active" : null}
 						>
