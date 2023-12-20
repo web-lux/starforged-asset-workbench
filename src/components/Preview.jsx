@@ -76,12 +76,12 @@ export default function Preview({ form }) {
 					</li>
 				</ul>
 				{form.hasTrack &&
-					<div class="asset-track">
+					<div className="asset-track">
 							{(() => {
 								const track = [];
 
 								for (let i = form.track; i >= 0; i--) {
-									track.push(<div class="asset-track-hex">{i}</div>);
+									track.push(<div className="asset-track-hex">{i}</div>);
 								}
 
 								return track;
