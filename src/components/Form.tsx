@@ -175,7 +175,13 @@ export default function Form({
 								name="AssetTrackCheck"
 								id="AssetTrackCheck"
 								onChange={(e) =>
-									setForm({ ...form, hasTrack: e.target.checked })
+									setForm({
+										...form,
+										track: {
+											...form.track,
+											isChecked: e.target.checked,
+										},
+									})
 								}
 							/>
 							<input
@@ -184,7 +190,15 @@ export default function Form({
 								id="assetTrack"
 								min="1"
 								max="6"
-								onChange={(e) => setForm({ ...form, track: e.target.value })}
+								onChange={(e) =>
+									setForm({
+										...form,
+										track: {
+											...form.track,
+											maxNumber: Number(e.target.value),
+										},
+									})
+								}
 							/>
 						</div>
 					</div>
