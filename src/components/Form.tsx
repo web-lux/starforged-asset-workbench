@@ -31,17 +31,6 @@ export default function Form({
 		setForm({ ...form, additionalFields: newArr });
 	}
 
-	function handleImageSize(value) {
-		const percentage = value + "%";
-		setForm({
-			...form,
-			image: {
-				...form.image,
-				size: percentage,
-			},
-		});
-	}
-
 	function handleType(value) {
 		let newType = {
 			className: value,
@@ -125,7 +114,13 @@ export default function Form({
 								name="assetImageSize"
 								id="assetImageSize"
 								onChange={(e) => {
-									handleImageSize(e.target.value);
+									setForm({
+										...form,
+										image: {
+											...form.image,
+											size: Number(e.target.value),
+										},
+									});
 								}}
 							/>
 						</div>
