@@ -71,7 +71,7 @@ export default function Form({
 		setForm({ ...form, type: newType });
 	}
 
-	const [selection, setSelection] = useState("interface");
+	const [tab, setTab] = useState("interface");
 
 	return (
 		<div className="form">
@@ -80,23 +80,23 @@ export default function Form({
 					<ul>
 						<li
 							onClick={(e) => {
-								setSelection("interface");
+								setTab("interface");
 							}}
-							className={selection === "interface" ? "active" : null}>
+							className={tab === "interface" ? "active" : null}>
 							Interface
 						</li>
 
 						<li
 							onClick={(e) => {
-								setSelection("upgrades");
+								setTab("upgrades");
 							}}
-							className={selection === "upgrades" ? "active" : null}>
+							className={tab === "upgrades" ? "active" : null}>
 							Upgrades
 						</li>
 					</ul>
 				</nav>
 
-				<fieldset className={selection === "interface" ? "visible" : null}>
+				<fieldset className={tab === "interface" ? "visible" : null}>
 					<legend hidden>Interface</legend>
 
 					<div className="fieldgroup">
@@ -233,8 +233,7 @@ export default function Form({
 					<div></div>
 				</fieldset>
 
-				<fieldset
-					className={selection === "upgrades" ? "upgrades visible" : null}>
+				<fieldset className={tab === "upgrades" ? "upgrades visible" : null}>
 					<legend hidden>Upgrades</legend>
 
 					<div className="fieldgroup">
