@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Preview from "./components/Preview.jsx";
-import Form from "./components/Form.jsx";
+import Form from "./components/Form.tsx";
 import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
-import { placeholderAsset } from "./assets/placeholderAsset.js";
+import { placeholderAsset } from "./components/placeholderAsset.ts";
 
 function App() {
-	const [form, setForm] = useState(placeholderAsset);
+	const [asset, setAsset] = useState(placeholderAsset);
 
 	return (
 		<div className="wrapper">
@@ -14,10 +14,10 @@ function App() {
 				<Header />
 
 				<main>
-					<Preview form={form} />
+					<Preview form={asset} />
 					<Form
-						setForm={setForm}
-						form={form}
+						setAsset={setAsset}
+						asset={asset}
 					/>
 				</main>
 			</div>

@@ -1,7 +1,14 @@
 import { useState } from "react";
 import "./Form.scss";
+import Asset from "../interfaces/Asset";
 
-export default function Form({ form, setForm }) {
+export default function Form({
+	form,
+	setForm,
+}: {
+	form: Asset;
+	setForm: React.Dispatch<React.SetStateAction<Asset>>;
+}) {
 	function handleArr(id, property, value) {
 		const newArr = form.upgrades.map((upgrade) => {
 			if (upgrade.id === id) {
@@ -73,19 +80,17 @@ export default function Form({ form, setForm }) {
 					<ul>
 						<li
 							onClick={(e) => {
-								setSelection("interface")
+								setSelection("interface");
 							}}
-							className={selection === "interface" ? "active" : null}
-						>
+							className={selection === "interface" ? "active" : null}>
 							Interface
 						</li>
 
 						<li
 							onClick={(e) => {
-								setSelection("upgrades")
+								setSelection("upgrades");
 							}}
-							className={selection === "upgrades" ? "active" : null}
-						>
+							className={selection === "upgrades" ? "active" : null}>
 							Upgrades
 						</li>
 					</ul>
@@ -135,8 +140,7 @@ export default function Form({ form, setForm }) {
 								onChange={(e) => {
 									handleType(e.target.value);
 								}}
-								defaultValue="module"
-							>
+								defaultValue="module">
 								<option value="commandVehicle">Command Vehicle</option>
 								<option value="module">Module</option>
 								<option value="supportVehicle">Support Vehicle</option>
@@ -164,7 +168,9 @@ export default function Form({ form, setForm }) {
 								type="text"
 								name="assetDescription"
 								id="assetDescription"
-								onChange={(e) => setForm({ ...form, description: e.target.value })}
+								onChange={(e) =>
+									setForm({ ...form, description: e.target.value })
+								}
 							/>
 						</div>
 						<div>
@@ -173,7 +179,9 @@ export default function Form({ form, setForm }) {
 								type="checkbox"
 								name="AssetTrackCheck"
 								id="AssetTrackCheck"
-								onChange={(e) => setForm({ ...form, hasTrack: e.target.checked })}
+								onChange={(e) =>
+									setForm({ ...form, hasTrack: e.target.checked })
+								}
 							/>
 							<input
 								type="number"
@@ -184,7 +192,6 @@ export default function Form({ form, setForm }) {
 								onChange={(e) => setForm({ ...form, track: e.target.value })}
 							/>
 						</div>
-
 					</div>
 
 					<div className="fieldgroup">
@@ -194,7 +201,9 @@ export default function Form({ form, setForm }) {
 								type="checkbox"
 								name="AdditionalFieldCheck1"
 								id="AdditionalFieldCheck1"
-								onChange={(e) => handleAddField(0, "hasAdditionalField", e.target.checked)}
+								onChange={(e) =>
+									handleAddField(0, "hasAdditionalField", e.target.checked)
+								}
 							/>
 							<input
 								type="text"
@@ -209,7 +218,9 @@ export default function Form({ form, setForm }) {
 								type="checkbox"
 								name="AdditionalFieldCheck2"
 								id="AdditionalFieldCheck2"
-								onChange={(e) => handleAddField(1, "hasAdditionalField", e.target.checked)}
+								onChange={(e) =>
+									handleAddField(1, "hasAdditionalField", e.target.checked)
+								}
 							/>
 							<input
 								type="text"
@@ -219,13 +230,11 @@ export default function Form({ form, setForm }) {
 							/>
 						</div>
 					</div>
-					<div>
-
-
-					</div>
+					<div></div>
 				</fieldset>
 
-				<fieldset className={selection === "upgrades" ? "upgrades visible" : null}>
+				<fieldset
+					className={selection === "upgrades" ? "upgrades visible" : null}>
 					<legend hidden>Upgrades</legend>
 
 					<div className="fieldgroup">
@@ -234,8 +243,9 @@ export default function Form({ form, setForm }) {
 							<textarea
 								name="Upgrade1"
 								id="Upgrade1"
-								onChange={(e) => handleArr(0, "text", e.target.value)}
-							></textarea>
+								onChange={(e) =>
+									handleArr(0, "text", e.target.value)
+								}></textarea>
 						</div>
 						<div>
 							<label htmlFor="Upgrade1check">Checked ?</label>
@@ -255,8 +265,9 @@ export default function Form({ form, setForm }) {
 							<textarea
 								name="Upgrade2"
 								id="Upgrade2"
-								onChange={(e) => handleArr(1, "text", e.target.value)}
-							></textarea>
+								onChange={(e) =>
+									handleArr(1, "text", e.target.value)
+								}></textarea>
 						</div>
 
 						<div>
@@ -276,8 +287,9 @@ export default function Form({ form, setForm }) {
 							<textarea
 								name="Upgrade3"
 								id="Upgrade3"
-								onChange={(e) => handleArr(2, "text", e.target.value)}
-							></textarea>
+								onChange={(e) =>
+									handleArr(2, "text", e.target.value)
+								}></textarea>
 						</div>
 
 						<div>
