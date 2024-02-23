@@ -1,14 +1,14 @@
 import { useState } from "react";
 import "./Form.scss";
 import Asset from "../interfaces/Asset";
+import Nav from "./form/Nav";
 
-export default function Form({
-	form,
-	setForm,
-}: {
+interface Props {
 	form: Asset;
 	setForm: React.Dispatch<React.SetStateAction<Asset>>;
-}) {
+}
+
+export default function Form({ form, setForm }: Props) {
 	function handleArr(id, property, value) {
 		const newArr = form.upgrades.map((upgrade) => {
 			if (upgrade.id === id) {
@@ -65,26 +65,10 @@ export default function Form({
 	return (
 		<div className="form">
 			<form>
-				<nav>
-					<ul>
-						<li
-							onClick={(e) => {
-								setTab("interface");
-							}}
-							className={tab === "interface" ? "active" : null}>
-							Interface
-						</li>
-
-						<li
-							onClick={(e) => {
-								setTab("upgrades");
-							}}
-							className={tab === "upgrades" ? "active" : null}>
-							Upgrades
-						</li>
-					</ul>
-				</nav>
-
+				<Nav
+					tab={tab}
+					setTab={setTab}
+				/>
 				<fieldset className={tab === "interface" ? "visible" : null}>
 					<legend hidden>Interface</legend>
 
