@@ -11,35 +11,6 @@ interface Props {
 }
 
 export default function Form({ form, setForm }: Props) {
-	function handleType(value) {
-		let newType = {
-			className: value,
-		};
-
-		switch (value) {
-			case "commandVehicle":
-				newType = { ...newType, name: "Command Vehicle" };
-				break;
-			case "module":
-				newType = { ...newType, name: "Module" };
-				break;
-			case "supportVehicle":
-				newType = { ...newType, name: "Support Vehicle" };
-				break;
-			case "path":
-				newType = { ...newType, name: "Path" };
-				break;
-			case "companion":
-				newType = { ...newType, name: "Companion" };
-				break;
-			case "deed":
-				newType = { ...newType, name: "Deed" };
-				break;
-		}
-
-		setForm({ ...form, type: newType });
-	}
-
 	const [tab, setTab] = useState("interface");
 
 	return (
