@@ -1,12 +1,12 @@
-import { useState } from "react";
 import Preview from "./components/Preview.jsx";
 import Form from "./components/Form.tsx";
 import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
 import { placeholderAsset } from "./components/placeholderAsset.ts";
+import { useImmer } from "use-immer";
 
 function App() {
-	const [asset, setAsset] = useState(placeholderAsset);
+	const [asset, updateAsset] = useImmer(placeholderAsset);
 
 	return (
 		<div className="wrapper">
@@ -16,7 +16,7 @@ function App() {
 				<main>
 					<Preview form={asset} />
 					<Form
-						setAsset={setAsset}
+						updateAsset={updateAsset}
 						asset={asset}
 					/>
 				</main>

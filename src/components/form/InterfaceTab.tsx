@@ -1,35 +1,28 @@
-export default function InterfaceTab(props) {
-	function handleType(value) {
-		let newType = {
-			className: value,
-		};
+import { Updater } from "use-immer";
+import Asset from "../../interfaces/Asset";
 
-		switch (value) {
-			case "commandVehicle":
-				newType = { ...newType, name: "Command Vehicle" };
-				break;
-			case "module":
-				newType = { ...newType, name: "Module" };
-				break;
-			case "supportVehicle":
-				newType = { ...newType, name: "Support Vehicle" };
-				break;
-			case "path":
-				newType = { ...newType, name: "Path" };
-				break;
-			case "companion":
-				newType = { ...newType, name: "Companion" };
-				break;
-			case "deed":
-				newType = { ...newType, name: "Deed" };
-				break;
-		}
+interface Props {
+	asset: Asset;
+	updateAsset: Updater<Asset>;
+	tab: string;
+}
 
-		props.setForm({ ...props.form, type: newType });
-	}
+export default function InterfaceTab({ asset, updateAsset, tab }: Props) {
+	const possibleTypes = [
+		"Command Vehicle",
+		"Module",
+		"Support Vehicle",
+		"Path",
+		"Companion",
+		"Deed",
+	];
+
+	const typeOptions = possibleTypes.map((type) => (
+		<option value={type}>{type}</option>
+	));
 
 	return (
-		<fieldset className={props.tab === "interface" ? "visible" : null}>
+		<fieldset className={tab === "interface" ? "visible" : null}>
 			<legend hidden>Interface</legend>
 
 			<div className="fieldgroup">
@@ -40,9 +33,8 @@ export default function InterfaceTab(props) {
 						name="assetImage"
 						id="assetImage"
 						onChange={(e) => {
-							props.setForm({
-								...props.form,
-								image: { ...props.form.image, path: e.target.value },
+							updateAsset((draft) => {
+								draft.image.path = e.target.value;
 							});
 						}}
 					/>
@@ -55,9 +47,8 @@ export default function InterfaceTab(props) {
 						name="assetImageSize"
 						id="assetImageSize"
 						onChange={(e) => {
-							props.setForm({
-								...props.form,
-								image: { ...props.form.image, size: Number(e.target.value) },
+							updateAsset((draft) => {
+								draft.image.size = Number(e.target.value);
 							});
 						}}
 					/>
@@ -70,16 +61,13 @@ export default function InterfaceTab(props) {
 					<select
 						name="assetType"
 						id="assetType"
-						onChange={(e) => {
-							handleType(e.target.value);
-						}}
-						defaultValue="module">
-						<option value="commandVehicle">Command Vehicle</option>
-						<option value="module">Module</option>
-						<option value="supportVehicle">Support Vehicle</option>
-						<option value="path">Path</option>
-						<option value="companion">Companion</option>
-						<option value="deed">Deed</option>
+						defaultValue={possibleTypes[1]}
+						onChange={(e) =>
+							updateAsset((draft) => {
+								draft.type = e.target.value;
+							})
+						}>
+						{typeOptions}
 					</select>
 				</div>
 
@@ -90,7 +78,9 @@ export default function InterfaceTab(props) {
 						name="assetTitle"
 						id="assetTitle"
 						onChange={(e) =>
-							props.setForm({ ...props.form, title: e.target.value })
+							updateAsset((draft) => {
+								draft.title = e.target.value;
+							})
 						}
 					/>
 				</div>
@@ -104,7 +94,9 @@ export default function InterfaceTab(props) {
 						name="assetDescription"
 						id="assetDescription"
 						onChange={(e) =>
-							props.setForm({ ...props.form, description: e.target.value })
+							updateAsset((draft) => {
+								draft.description = e.target.value;
+							})
 						}
 					/>
 				</div>
@@ -115,9 +107,8 @@ export default function InterfaceTab(props) {
 						name="AssetTrackCheck"
 						id="AssetTrackCheck"
 						onChange={(e) =>
-							props.setForm({
-								...props.form,
-								track: { ...props.form.track, isChecked: e.target.checked },
+							updateAsset((draft) => {
+								draft.track.isChecked = e.target.checked;
 							})
 						}
 					/>
@@ -128,12 +119,8 @@ export default function InterfaceTab(props) {
 						min="1"
 						max="6"
 						onChange={(e) =>
-							props.setForm({
-								...props.form,
-								track: {
-									...props.form.track,
-									maxNumber: Number(e.target.value),
-								},
+							updateAsset((draft) => {
+								draft.track.maxNumber = Number(e.target.value);
 							})
 						}
 					/>
@@ -148,14 +135,20 @@ export default function InterfaceTab(props) {
 						name="AdditionalFieldCheck1"
 						id="AdditionalFieldCheck1"
 						onChange={(e) =>
-							handleAddField(0, "hasAdditionalField", e.target.checked)
+							updateAsset((draft) => {
+								draft.additionalFields[0].isChecked = e.target.checked;
+							})
 						}
 					/>
 					<input
 						type="text"
 						name="assetAdditionalField1"
 						id="assetAdditionalField1"
-						onChange={(e) => handleAddField(0, "text", e.target.value)}
+						onChange={(e) =>
+							updateAsset((draft) => {
+								draft.additionalFields[0].text = e.target.value;
+							})
+						}
 					/>
 				</div>
 				<div>
@@ -165,14 +158,20 @@ export default function InterfaceTab(props) {
 						name="AdditionalFieldCheck2"
 						id="AdditionalFieldCheck2"
 						onChange={(e) =>
-							handleAddField(1, "hasAdditionalField", e.target.checked)
+							updateAsset((draft) => {
+								draft.additionalFields[1].isChecked = e.target.checked;
+							})
 						}
 					/>
 					<input
 						type="text"
 						name="assetAdditionalField2"
 						id="assetAdditionalField2"
-						onChange={(e) => handleAddField(1, "text", e.target.value)}
+						onChange={(e) =>
+							updateAsset((draft) => {
+								draft.additionalFields[1].text = e.target.value;
+							})
+						}
 					/>
 				</div>
 			</div>

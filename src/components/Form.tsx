@@ -5,12 +5,7 @@ import Nav from "./form/Nav";
 import InterfaceTab from "./form/InterfaceTab";
 import UpgradesTab from "./form/UpgradesTab";
 
-interface Props {
-	form: Asset;
-	setForm: React.Dispatch<React.SetStateAction<Asset>>;
-}
-
-export default function Form({ form, setForm }: Props) {
+export default function Form({ asset, updateAsset }) {
 	const [tab, setTab] = useState("interface");
 
 	return (
@@ -21,14 +16,14 @@ export default function Form({ form, setForm }: Props) {
 					setTab={setTab}
 				/>
 				<InterfaceTab
-					form={form}
-					setForm={setForm}
+					asset={asset}
+					updateAsset={updateAsset}
 					tab={tab}
 				/>
 
 				<UpgradesTab
-					form={form}
-					setForm={setForm}
+					form={asset}
+					setForm={updateAsset}
 					tab={tab}
 				/>
 			</form>
