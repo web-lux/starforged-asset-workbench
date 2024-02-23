@@ -22,8 +22,7 @@ export default function Form({ asset, updateAsset }) {
 				/>
 
 				<UpgradesTab
-					form={asset}
-					setForm={updateAsset}
+					updateAsset={updateAsset}
 					tab={tab}
 				/>
 			</form>

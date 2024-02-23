@@ -1,89 +1,52 @@
-export default function UpgradesTab(props) {
-	function handleArr(id, property, value) {
-		const newArr = props.form.upgrades.map((upgrade) => {
-			if (upgrade.id === id) {
-				return { ...upgrade, [property]: value };
-			} else {
-				return upgrade;
-			}
-		});
-		props.setForm({ ...props.form, upgrades: newArr });
-	}
+import { Updater } from "use-immer";
+import Asset from "../../interfaces/Asset";
 
-	function handleAddField(id, property, value) {
-		const newArr = props.form.additionalFields.map((additionalField) => {
-			if (additionalField.id === id) {
-				return { ...additionalField, [property]: value };
-			} else {
-				return additionalField;
-			}
-		});
-		props.setForm({ ...props.form, additionalFields: newArr });
+interface Props {
+	updateAsset: Updater<Asset>;
+	tab: string;
+}
+
+export default function UpgradesTab({ updateAsset, tab }: Props) {
+	let upgradeFields = [];
+
+	for (let i = 0; i < 3; i++) {
+		upgradeFields.push(
+			<div
+				className="fieldgroup"
+				key={i}>
+				<div>
+					<label htmlFor={`Upgrade${i}`}>Upgrade {i + 1}</label>
+					<textarea
+						name={`Upgrade${i}`}
+						id={`Upgrade${i}`}
+						onChange={(e) =>
+							updateAsset((draft) => {
+								draft.upgrades[i].text = e.target.value;
+							})
+						}></textarea>
+				</div>
+				<div>
+					<label htmlFor={`Upgrade${i}check`}>Checked ?</label>
+					<input
+						type="checkbox"
+						name={`Upgrade${i}check`}
+						id={`Upgrade${i}check`}
+						defaultChecked={i === 0 ? true : false}
+						onChange={(e) =>
+							updateAsset((draft) => {
+								draft.upgrades[i].isChecked = e.target.checked;
+							})
+						}
+					/>
+				</div>
+			</div>
+		);
 	}
 
 	return (
-		<fieldset className={props.tab === "upgrades" ? "upgrades visible" : null}>
+		<fieldset className={tab === "upgrades" ? "upgrades visible" : null}>
 			<legend hidden>Upgrades</legend>
-
-			<div className="fieldgroup">
-				<div>
-					<label htmlFor="Upgrade1">Upgrade 1</label>
-					<textarea
-						name="Upgrade1"
-						id="Upgrade1"
-						onChange={(e) => handleArr(0, "text", e.target.value)}></textarea>
-				</div>
-				<div>
-					<label htmlFor="Upgrade1check">Checked ?</label>
-					<input
-						type="checkbox"
-						name="Upgrade1check"
-						id="Upgrade1check"
-						defaultChecked="true"
-						onChange={(e) => handleArr(0, "ischecked", e.target.checked)}
-					/>
-				</div>
-			</div>
-
-			<div className="fieldgroup">
-				<div>
-					<label htmlFor="Upgrade2">Upgrade 2</label>
-					<textarea
-						name="Upgrade2"
-						id="Upgrade2"
-						onChange={(e) => handleArr(1, "text", e.target.value)}></textarea>
-				</div>
-
-				<div>
-					<label htmlFor="Upgrade2check">Checked ?</label>
-					<input
-						type="checkbox"
-						name="Upgrade2check"
-						id="Upgrade2check"
-						onChange={(e) => handleArr(1, "ischecked", e.target.checked)}
-					/>
-				</div>
-			</div>
-
-			<div className="fieldgroup">
-				<div>
-					<label htmlFor="Upgrade3">Upgrade 3</label>
-					<textarea
-						name="Upgrade3"
-						id="Upgrade3"
-						onChange={(e) => handleArr(2, "text", e.target.value)}></textarea>
-				</div>
-
-				<div>
-					<label htmlFor="Upgrade3check">Checked ?</label>
-					<input
-						type="checkbox"
-						name="Upgrade3check"
-						id="Upgrade3check"
-						onChange={(e) => handleArr(2, "ischecked", e.target.checked)}
-					/>
-				</div>
-			</div>
+			{upgradeFields}
 		</fieldset>
 	);
 }
