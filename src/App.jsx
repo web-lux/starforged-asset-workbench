@@ -1,4 +1,4 @@
-import Preview from "./components/Preview.jsx";
+import Preview from "./components/Preview.tsx";
 import Form from "./components/Form.tsx";
 import Footer from "./components/Footer.jsx";
 import Header from "./components/Header.jsx";
@@ -14,7 +14,7 @@ function App() {
 				<Header />
 
 				<main>
-					<Preview form={asset} />
+					<Preview asset={asset} />
 					<Form
 						updateAsset={updateAsset}
 						asset={asset}
