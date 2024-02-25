@@ -42,7 +42,7 @@
 			display: flex;
 			align-items: start;
 			flex-wrap: wrap;
-			gap: 20px
+			gap: 20px;
 		}
 
 		label {
@@ -57,17 +57,18 @@
 		select,
 		textarea,
 		input[type="range"],
+		input[type="file"],
 		label {
 			width: 200px;
 		}
 
-		input[type="checkbox"] + input[type="text"]{
+		input[type="checkbox"] + input[type="text"] {
 			margin-left: 10px;
-			width : 170px;
+			width: 170px;
 		}
 
 		input[type="checkbox"]:not(:checked) + input[type="text"],
-		input[type="checkbox"]:not(:checked) + input[type="number"]{
+		input[type="checkbox"]:not(:checked) + input[type="number"] {
 			display: none;
 		}
 
@@ -92,7 +93,7 @@
 			cursor: pointer;
 		}
 
-		input[type="number"]{
+		input[type="number"] {
 			padding: 1px 5px;
 			width: 50px;
 			font-family: var(--ui);
