@@ -1,9 +1,9 @@
-import Preview from "./components/Preview.tsx";
-import Form from "./components/Form.tsx";
-import Footer from "./components/Footer.jsx";
-import Header from "./components/Header.jsx";
-import { placeholderAsset } from "./components/placeholderAsset.ts";
 import { useImmer } from "use-immer";
+import { placeholderAsset } from "./placeholderAsset.ts";
+import Preview from "./components/Preview";
+import Form from "./components/Form";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 function App() {
 	const [asset, updateAsset] = useImmer(placeholderAsset);
@@ -15,10 +15,7 @@ function App() {
 
 				<main>
 					<Preview asset={asset} />
-					<Form
-						updateAsset={updateAsset}
-						asset={asset}
-					/>
+					<Form updateAsset={updateAsset} />
 				</main>
 			</div>
 

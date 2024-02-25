@@ -1,9 +1,13 @@
-import "./Preview.scss";
 import { useRef, useCallback } from "react";
 import { toPng } from "html-to-image";
 import Asset from "../interfaces/Asset";
+import "./Preview.scss";
 
-export default function Preview({ asset }: { asset: Asset }) {
+interface Props {
+	asset: Asset;
+}
+
+export default function Preview({ asset }: Props) {
 	const ref = useRef(null);
 
 	const saveImage = useCallback(() => {
@@ -23,7 +27,7 @@ export default function Preview({ asset }: { asset: Asset }) {
 			});
 	}, [ref]);
 
-	function getClassname(type: string) {
+	function getClassName(type: string) {
 		return type
 			.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
 				return index === 0 ? word.toLowerCase() : word.toUpperCase();
@@ -31,42 +35,55 @@ export default function Preview({ asset }: { asset: Asset }) {
 			.replace(/\s+/g, "");
 	}
 
+	function getTrack(): JSX.Element[] {
+		const track = [];
+
+		for (let i = asset.track.maxNumber; i >= 0; i--) {
+			track.push(<div className="asset-track-hex">{i}</div>);
+		}
+
+		return track;
+	}
+
+	const AdditionalFields = asset.additionalFields.map((additionalField) => {
+		if (additionalField.isChecked) {
+			return (
+				<span
+					className="asset-additional-field"
+					key={additionalField.id}>
+					{additionalField.text}
+				</span>
+			);
+		}
+	});
+
+	const upgrades = asset.upgrades.map((upgrade) => (
+		<li
+			className={upgrade.isChecked ? "checked" : undefined}
+			key={upgrade.id}>
+			{upgrade.text || "Text"}
+		</li>
+	));
+
 	return (
 		<div>
 			<section
-				className={`asset-preview ${getClassname(asset.type)}`}
+				className={`asset-preview ${getClassName(asset.type)}`}
 				ref={ref}>
 				<header>
 					<div className="title-container">
 						<span className="asset-type">{asset.type}</span>
-						<span className="asset-title">
-							{asset.title ? asset.title : "Title"}
-						</span>
+						<span className="asset-title">{asset.title || "Title"}</span>
 						{asset.description && (
 							/* Render the HTML element only if asset.description has content */
 							<span className="asset-description">{asset.description}</span>
 						)}
-						{asset.additionalFields[0]["isChecked"] && (
-							/* Render the HTML element only if asset.hasAdditionalField1 returns true */
-							<span className={"asset-additional-field"}>
-								{asset.additionalFields[0]["text"]
-									? asset.additionalFields[0]["text"]
-									: "FIELD"}
-							</span>
-						)}
-						{asset.additionalFields[1]["isChecked"] && (
-							/* Render the HTML element only if asset.hasAdditionalField2 returns true */
-							<span className={"asset-additional-field"}>
-								{asset.additionalFields[1]["text"]
-									? asset.additionalFields[1]["text"]
-									: "FIELD"}
-							</span>
-						)}
+						{AdditionalFields}
 					</div>
 					<div className="clip icon-container">
 						<div className="clip icon">
 							<img
-								src={asset.image.path ? asset.image.path : "src/assets/owl.svg"}
+								src={asset.image.path || "src/assets/owl.svg"}
 								style={{ width: asset.image.size }}
 							/>
 							<svg
@@ -82,29 +99,9 @@ export default function Preview({ asset }: { asset: Asset }) {
 						</div>
 					</div>
 				</header>
-				<ul>
-					<li className={asset.upgrades[0]["isChecked"] ? "checked" : null}>
-						{asset.upgrades[0]["text"] ? asset.upgrades[0]["text"] : "Text"}
-					</li>
-					<li className={asset.upgrades[1]["isChecked"] ? "checked" : null}>
-						{asset.upgrades[1]["text"] ? asset.upgrades[1]["text"] : "Text"}
-					</li>
-					<li className={asset.upgrades[2]["isChecked"] ? "checked" : null}>
-						{asset.upgrades[2]["text"] ? asset.upgrades[2]["text"] : "Text"}
-					</li>
-				</ul>
+				<ul>{upgrades}</ul>
 				{asset.track.isChecked && (
-					<div className="asset-track">
-						{(() => {
-							const track = [];
-
-							for (let i = asset.track.maxNumber; i >= 0; i--) {
-								track.push(<div className="asset-track-hex">{i}</div>);
-							}
-
-							return track;
-						})()}
-					</div>
+					<div className="asset-track">{getTrack()}</div>
 				)}
 			</section>
 

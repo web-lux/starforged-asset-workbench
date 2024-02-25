@@ -1,11 +1,10 @@
 import { useState } from "react";
-import "./Form.scss";
-import Asset from "../interfaces/Asset";
 import Nav from "./form/Nav";
 import InterfaceTab from "./form/InterfaceTab";
 import UpgradesTab from "./form/UpgradesTab";
+import "./Form.scss";
 
-export default function Form({ asset, updateAsset }) {
+export default function Form({ updateAsset }) {
 	const [tab, setTab] = useState("interface");
 
 	return (
@@ -15,8 +14,8 @@ export default function Form({ asset, updateAsset }) {
 					tab={tab}
 					setTab={setTab}
 				/>
+
 				<InterfaceTab
-					asset={asset}
 					updateAsset={updateAsset}
 					tab={tab}
 				/>

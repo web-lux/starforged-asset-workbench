@@ -2,12 +2,11 @@ import { Updater } from "use-immer";
 import Asset from "../../interfaces/Asset";
 
 interface Props {
-	asset: Asset;
 	updateAsset: Updater<Asset>;
 	tab: string;
 }
 
-export default function InterfaceTab({ asset, updateAsset, tab }: Props) {
+export default function InterfaceTab({ updateAsset, tab }: Props) {
 	const possibleTypes = [
 		"Command Vehicle",
 		"Module",
@@ -20,6 +19,42 @@ export default function InterfaceTab({ asset, updateAsset, tab }: Props) {
 	const typeOptions = possibleTypes.map((type) => (
 		<option value={type}>{type}</option>
 	));
+
+	function getAdditionalFieldInputs() {
+		let inputs = [];
+
+		for (let i = 0; i < 2; i++) {
+			inputs.push(
+				<div>
+					<label htmlFor="assetAdditionalField1">
+						Additional field {i + 1}
+					</label>
+					<input
+						type="checkbox"
+						name={`AdditionalFieldCheck${i}`}
+						id={`AdditionalFieldCheck${i}`}
+						onChange={(e) =>
+							updateAsset((draft) => {
+								draft.additionalFields[i].isChecked = e.target.checked;
+							})
+						}
+					/>
+					<input
+						type="text"
+						name={`AdditionalFieldField${i}`}
+						id={`AdditionalFieldField${i}`}
+						onChange={(e) =>
+							updateAsset((draft) => {
+								draft.additionalFields[i].text = e.target.value;
+							})
+						}
+					/>
+				</div>
+			);
+		}
+
+		return inputs;
+	}
 
 	return (
 		<fieldset className={tab === "interface" ? "visible" : null}>
@@ -127,55 +162,7 @@ export default function InterfaceTab({ asset, updateAsset, tab }: Props) {
 				</div>
 			</div>
 
-			<div className="fieldgroup">
-				<div>
-					<label htmlFor="assetAdditionalField1">Additional field 1</label>
-					<input
-						type="checkbox"
-						name="AdditionalFieldCheck1"
-						id="AdditionalFieldCheck1"
-						onChange={(e) =>
-							updateAsset((draft) => {
-								draft.additionalFields[0].isChecked = e.target.checked;
-							})
-						}
-					/>
-					<input
-						type="text"
-						name="assetAdditionalField1"
-						id="assetAdditionalField1"
-						onChange={(e) =>
-							updateAsset((draft) => {
-								draft.additionalFields[0].text = e.target.value;
-							})
-						}
-					/>
-				</div>
-				<div>
-					<label htmlFor="assetAdditionalField2">Additional field 2</label>
-					<input
-						type="checkbox"
-						name="AdditionalFieldCheck2"
-						id="AdditionalFieldCheck2"
-						onChange={(e) =>
-							updateAsset((draft) => {
-								draft.additionalFields[1].isChecked = e.target.checked;
-							})
-						}
-					/>
-					<input
-						type="text"
-						name="assetAdditionalField2"
-						id="assetAdditionalField2"
-						onChange={(e) =>
-							updateAsset((draft) => {
-								draft.additionalFields[1].text = e.target.value;
-							})
-						}
-					/>
-				</div>
-			</div>
-			<div></div>
+			<div className="fieldgroup">{getAdditionalFieldInputs()}</div>
 		</fieldset>
 	);
 }
