@@ -1,8 +1,7 @@
-import { Updater } from "use-immer";
-import Asset from "../../interfaces/Asset";
+import hasUpdateAsset from "../../interfaces/HasUpdateAsset";
+import ImagePathInput from "./ImagePathInput";
 
-interface Props {
-	updateAsset: Updater<Asset>;
+interface Props extends hasUpdateAsset {
 	tab: string;
 }
 
@@ -61,19 +60,7 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
 			<legend hidden>Interface</legend>
 
 			<div className="fieldgroup">
-				<div>
-					<label htmlFor="assetImage">Image url</label>
-					<input
-						type="text"
-						name="assetImage"
-						id="assetImage"
-						onChange={(e) => {
-							updateAsset((draft) => {
-								draft.image.path = e.target.value;
-							});
-						}}
-					/>
-				</div>
+				<ImagePathInput updateAsset={updateAsset} />
 
 				<div>
 					<label htmlFor="assetImageSize">Image Size</label>
