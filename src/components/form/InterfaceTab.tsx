@@ -15,8 +15,12 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
 		"Deed",
 	];
 
-	const typeOptions = possibleTypes.map((type) => (
-		<option value={type}>{type}</option>
+	const typeOptions = possibleTypes.map((type, index) => (
+		<option
+			value={type}
+			key={index}>
+			{type}
+		</option>
 	));
 
 	function getAdditionalFieldInputs() {
@@ -24,7 +28,7 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
 
 		for (let i = 0; i < 2; i++) {
 			inputs.push(
-				<div>
+				<div key={i}>
 					<label htmlFor="assetAdditionalField1">
 						Additional field {i + 1}
 					</label>
