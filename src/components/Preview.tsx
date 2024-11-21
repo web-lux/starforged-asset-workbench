@@ -1,7 +1,7 @@
-import { useRef, useCallback } from "react";
-import { toPng } from "html-to-image";
-import Asset from "../interfaces/Asset";
-import "./Preview.scss";
+import { useRef, useCallback } from 'react';
+import { toPng } from 'html-to-image';
+import Asset from '../interfaces/Asset';
+import './Preview.scss';
 
 interface Props {
     asset: Asset;
@@ -15,10 +15,10 @@ export default function Preview({ asset }: Props) {
             return;
         }
 
-        toPng(ref.current, { cacheBust: true, backgroundColor: "white" })
+        toPng(ref.current, { cacheBust: true, backgroundColor: 'white' })
             .then((dataUrl) => {
-                const link = document.createElement("a");
-                link.download = "my-image-name.png";
+                const link = document.createElement('a');
+                link.download = 'my-image-name.png';
                 link.href = dataUrl;
                 link.click();
             })
@@ -32,7 +32,7 @@ export default function Preview({ asset }: Props) {
             .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
                 return index === 0 ? word.toLowerCase() : word.toUpperCase();
             })
-            .replace(/\s+/g, "");
+            .replace(/\s+/g, '');
     }
 
     function getTrack(): JSX.Element[] {
@@ -57,12 +57,15 @@ export default function Preview({ asset }: Props) {
         }
     });
 
-    const upgrades = asset.upgrades.map((upgrade) => (
-        <li
-            className={upgrade.isChecked ? "checked" : undefined}
-            key={upgrade.id}
-            dangerouslySetInnerHTML={{ __html: parseMarkdown(upgrade.text) || "Text" }}></li>
-    ));
+    const upgrades = asset.upgrades.map((upgrade) => {
+        if (!upgrade.isDisplayed) return;
+        return (
+            <li
+                className={upgrade.isChecked ? 'checked' : undefined}
+                key={upgrade.id}
+                dangerouslySetInnerHTML={{ __html: parseMarkdown(upgrade.text) || 'Text' }}></li>
+        );
+    });
 
     function parseMarkdown(string) {
         const mdRegex = {
@@ -72,9 +75,9 @@ export default function Preview({ asset }: Props) {
         };
 
         const htmlTags = {
-            bold: "<b>$1</b>",
-            italic: "<i>$1</i>",
-            underline: "<u>$1</u>",
+            bold: '<b>$1</b>',
+            italic: '<i>$1</i>',
+            underline: '<u>$1</u>',
         };
 
         string = string.replace(mdRegex.bold, htmlTags.bold).replace(mdRegex.italic, htmlTags.italic).replace(mdRegex.underline, htmlTags.underline);
@@ -90,7 +93,7 @@ export default function Preview({ asset }: Props) {
                 <header>
                     <div className="title-container">
                         <span className="asset-type">{asset.type}</span>
-                        <span className="asset-title">{asset.title || "Title"}</span>
+                        <span className="asset-title">{asset.title || 'Title'}</span>
                         {asset.description && (
                             /* Render the HTML element only if asset.description has content */
                             <span className="asset-description">{asset.description}</span>
@@ -100,7 +103,7 @@ export default function Preview({ asset }: Props) {
                     <div className="clip icon-container">
                         <div className="clip icon">
                             <img
-                                src={asset.image.path || "src/assets/owl.svg"}
+                                src={asset.image.path || 'src/assets/owl.svg'}
                                 style={{ width: asset.image.size }}
                             />
                             <svg
