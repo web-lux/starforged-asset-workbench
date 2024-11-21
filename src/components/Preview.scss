@@ -138,6 +138,7 @@
 
         .clip {
             clip-path: url(#svg-hex);
+            overflow: hidden;
         }
 
         .icon-container {
