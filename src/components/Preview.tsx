@@ -1,15 +1,13 @@
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useContext } from 'react';
 import { toPng } from 'html-to-image';
-import Asset from '../interfaces/Asset';
-import './Preview.scss';
-import TopHex from './preview/TopHex';
-import BottomHex from './preview/BottomHex';
+import { AssetContext } from 'src/services/AssetContext.js';
+import Asset from 'src/types/Asset';
+import Header from './preview/Header';
+import Upgrades from './preview/Upgrades';
+import Track from './preview/Track';
 
-interface Props {
-    asset: Asset;
-}
-
-export default function Preview({ asset }: Props) {
+export default function Preview() {
+    const asset: Asset = useContext(AssetContext);
     const ref = useRef(null);
 
     const saveImage = useCallback(() => {
@@ -29,108 +27,14 @@ export default function Preview({ asset }: Props) {
             });
     }, [ref]);
 
-    function getClassName(type: string) {
-        return type
-            .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-                return index === 0 ? word.toLowerCase() : word.toUpperCase();
-            })
-            .replace(/\s+/g, '');
-    }
-
-    function getTrack(): JSX.Element[] {
-        const track = [];
-
-        for (let i = asset.track.maxNumber; i >= 0; i--) {
-            track.push(<div className="asset-track-hex">{i}</div>);
-        }
-
-        return track;
-    }
-
-    const AdditionalFields = asset.additionalFields.map((additionalField) => {
-        if (additionalField.isChecked) {
-            return (
-                <span
-                    className="asset-additional-field"
-                    key={additionalField.id}>
-                    {additionalField.text}
-                </span>
-            );
-        }
-    });
-
-    const upgrades = asset.upgrades.map((upgrade) => {
-        if (!upgrade.isDisplayed) return;
-        return (
-            <li
-                className={upgrade.isChecked ? 'checked' : undefined}
-                key={upgrade.id}
-                dangerouslySetInnerHTML={{ __html: parseMarkdown(upgrade.text) || 'Text' }}></li>
-        );
-    });
-
-    function parseMarkdown(string) {
-        const mdRegex = {
-            bold: /\*\*([\s\S]*?)\*\*/g,
-            italic: /_([\s\S]*?)_/g,
-            underline: /~~([\s\S]*?)~~/g,
-        };
-
-        const htmlTags = {
-            bold: '<b>$1</b>',
-            italic: '<i>$1</i>',
-            underline: '<u>$1</u>',
-        };
-
-        string = string.replace(mdRegex.bold, htmlTags.bold).replace(mdRegex.italic, htmlTags.italic).replace(mdRegex.underline, htmlTags.underline);
-
-        return string;
-    }
-
     return (
         <div>
             <section
-                className={`asset-preview ${getClassName(asset.type)}`}
+                className={`asset-preview`}
                 ref={ref}>
-                <header>
-                    <div className="title-container">
-                        <span
-                            className="asset-type"
-                            style={{ color: `hsl(${asset.hue}, 20%, 55%)` }}>
-                            {asset.type}
-                        </span>
-                        <span className="asset-title">{asset.title || 'Title'}</span>
-                        {asset.description && (
-                            /* Render the HTML element only if asset.description has content */
-                            <span className="asset-description">{asset.description}</span>
-                        )}
-                        {AdditionalFields}
-                    </div>
-                    <div className="clip icon-container">
-                        <div
-                            className="clip icon"
-                            style={{ backgroundColor: `hsl(${asset.hue}, 20%, 85%)` }}>
-                            <img
-                                src={asset.image.path || 'src/assets/owl.svg'}
-                                style={{ width: asset.image.size }}
-                            />
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                height="0"
-                                width="0">
-                                <clipPath
-                                    id="svg-hex"
-                                    clipPathUnits="objectBoundingBox">
-                                    <path d="M0.501,0 L1,0.25 V0.75 L0.501,1 L0.001,0.75 L0.001,0.25 L0.501,0" />
-                                </clipPath>
-                            </svg>
-                        </div>
-                    </div>
-                    <TopHex hue={asset.hue} />
-                    <BottomHex hue={asset.hue} />
-                </header>
-                <ul>{upgrades}</ul>
-                {asset.track.isChecked && <div className="asset-track">{getTrack()}</div>}
+                <Header />
+                <Upgrades />
+                {asset.track.isChecked && <Track number={asset.track.maxNumber} />}
             </section>
 
             <button onClick={saveImage}>Save as PNG</button>

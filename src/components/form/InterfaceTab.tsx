@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import hasUpdateAsset from '../../interfaces/HasUpdateAsset';
+import hasUpdateAsset from '../../types/HasUpdateAsset';
 import ImagePathInput from './ImagePathInput';
 
 interface Props extends hasUpdateAsset {

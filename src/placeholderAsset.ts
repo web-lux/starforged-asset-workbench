@@ -1,4 +1,4 @@
-import Asset from './interfaces/Asset';
+import Asset from 'src/types/Asset';
 
 export const placeholderAsset: Asset = {
     title: 'Title',

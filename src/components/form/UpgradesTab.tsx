@@ -1,5 +1,5 @@
 import { Updater } from 'use-immer';
-import Asset from '../../interfaces/Asset';
+import Asset from '../../types/Asset';
 
 interface Props {
     updateAsset: Updater<Asset>;
