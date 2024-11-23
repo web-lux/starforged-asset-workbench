@@ -3,6 +3,7 @@ import Asset from './interfaces/Asset';
 export const placeholderAsset: Asset = {
     title: 'Title',
     type: 'Module',
+    hue: 280,
     description: 'Lorem Ipsum',
     image: {
         path: 'https://i.imgur.com/ZcnuoVg.png',

@@ -27,6 +27,29 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
         });
     }
 
+    function changeHue(e) {
+        const hue = e.target.dataset.hue;
+        updateAsset((draft) => {
+            draft.hue = hue;
+        });
+    }
+
+    function getColorGrid() {
+        let colorGrid = [];
+
+        for (let index = 0; index <= 350; index += 25) {
+            colorGrid.push(
+                <div
+                    onClick={changeHue}
+                    style={{ backgroundColor: `hsl(${index}, 75%, 55%)` }}
+                    data-hue={index}
+                    key={index}></div>
+            );
+        }
+
+        return colorGrid;
+    }
+
     function getCustomTypeNameInput() {
         if (isTypeCustom) {
             return (
@@ -148,6 +171,8 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
                     />
                 </div>
             </div>
+
+            <div className="color-grid">{getColorGrid()}</div>
 
             <div className="fieldgroup">
                 <div>

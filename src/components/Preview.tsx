@@ -2,6 +2,8 @@ import { useRef, useCallback } from 'react';
 import { toPng } from 'html-to-image';
 import Asset from '../interfaces/Asset';
 import './Preview.scss';
+import TopHex from './preview/TopHex';
+import BottomHex from './preview/BottomHex';
 
 interface Props {
     asset: Asset;
@@ -92,7 +94,11 @@ export default function Preview({ asset }: Props) {
                 ref={ref}>
                 <header>
                     <div className="title-container">
-                        <span className="asset-type">{asset.type}</span>
+                        <span
+                            className="asset-type"
+                            style={{ color: `hsl(${asset.hue}, 20%, 55%)` }}>
+                            {asset.type}
+                        </span>
                         <span className="asset-title">{asset.title || 'Title'}</span>
                         {asset.description && (
                             /* Render the HTML element only if asset.description has content */
@@ -101,7 +107,9 @@ export default function Preview({ asset }: Props) {
                         {AdditionalFields}
                     </div>
                     <div className="clip icon-container">
-                        <div className="clip icon">
+                        <div
+                            className="clip icon"
+                            style={{ backgroundColor: `hsl(${asset.hue}, 20%, 85%)` }}>
                             <img
                                 src={asset.image.path || 'src/assets/owl.svg'}
                                 style={{ width: asset.image.size }}
@@ -118,6 +126,8 @@ export default function Preview({ asset }: Props) {
                             </svg>
                         </div>
                     </div>
+                    <TopHex hue={asset.hue} />
+                    <BottomHex hue={asset.hue} />
                 </header>
                 <ul>{upgrades}</ul>
                 {asset.track.isChecked && <div className="asset-track">{getTrack()}</div>}

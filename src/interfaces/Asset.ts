@@ -8,6 +8,7 @@ type Field = {
 export default interface Asset {
     title: string;
     type: string;
+    hue: number;
     description: string;
     image: {
         path: string;

@@ -1,6 +1,4 @@
 .asset-preview.module {
-    background: url(../assets/bg-colors/module-1.svg) top -17px right 84px, url(../assets/bg-colors/module-2.svg) top 55px right -31px;
-
     .icon {
         background-color: #d8cddd;
     }
@@ -88,6 +86,7 @@
     padding: 15px;
     background-repeat: no-repeat !important;
     position: relative;
+    overflow: hidden;
 
     header {
         position: relative;
@@ -215,5 +214,29 @@
             font-weight: 700;
             margin-left: -5px;
         }
+    }
+}
+
+.top-hex {
+    position: absolute;
+    top: -32px;
+    right: 70px;
+}
+
+.bottom-hex {
+    position: absolute;
+    top: 40px;
+    right: -46px;
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(25, 1fr);
+    gap: 5px;
+
+    div {
+        width: 12px;
+        aspect-ratio: 1 / 1;
+        cursor: pointer;
     }
 }
