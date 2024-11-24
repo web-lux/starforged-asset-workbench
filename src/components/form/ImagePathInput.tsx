@@ -1,6 +1,11 @@
-import hasUpdateAsset from '../../types/HasUpdateAsset';
+import { useContext } from 'react';
+import { Updater } from 'use-immer';
+import { UpdateAssetContext } from 'src/services/AssetContext.js';
+import Asset from 'src/types/Asset';
 
-export default function ImagePathInput({ updateAsset }: hasUpdateAsset) {
+export default function ImagePathInput() {
+    const updateAsset: Updater<Asset> = useContext(UpdateAssetContext);
+
     return (
         <div>
             <label htmlFor="assetImage">Image</label>

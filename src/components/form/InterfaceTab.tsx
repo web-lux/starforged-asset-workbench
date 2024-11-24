@@ -1,75 +1,12 @@
-import { useState } from 'react';
-import hasUpdateAsset from '../../types/HasUpdateAsset';
-import ImagePathInput from './ImagePathInput';
+import { useContext } from 'react';
+import { Updater } from 'use-immer';
+import { UpdateAssetContext, AssetContext } from 'src/services/AssetContext.js';
+import ImagePathInput from 'src/components/form/ImagePathInput';
+import Asset from 'src/types/Asset';
 
-interface Props extends hasUpdateAsset {
-    tab: string;
-}
-
-export default function InterfaceTab({ updateAsset, tab }: Props) {
-    const defaultTypes = ['Command Vehicle', 'Module', 'Support Vehicle', 'Path', 'Companion', 'Deed'];
-    const [isTypeCustom, setIsTypeCustom] = useState(false);
-
-    const typeOptions = [...defaultTypes, 'Custom'].map((type, index) => (
-        <option
-            value={type}
-            key={index}>
-            {type}
-        </option>
-    ));
-
-    function handleTypeChange(e) {
-        if (defaultTypes.includes(e.target.value)) {
-            setIsTypeCustom(false);
-        } else setIsTypeCustom(true);
-        updateAsset((draft) => {
-            draft.type = e.target.value;
-        });
-    }
-
-    function changeHue(e) {
-        const hue = e.target.dataset.hue;
-        updateAsset((draft) => {
-            draft.hue = hue;
-        });
-    }
-
-    function getColorGrid() {
-        let colorGrid = [];
-
-        for (let index = 0; index <= 350; index += 25) {
-            colorGrid.push(
-                <div
-                    onClick={changeHue}
-                    style={{ backgroundColor: `hsl(${index}, 75%, 55%)` }}
-                    data-hue={index}
-                    key={index}></div>
-            );
-        }
-
-        return colorGrid;
-    }
-
-    function getCustomTypeNameInput() {
-        if (isTypeCustom) {
-            return (
-                <div>
-                    <label htmlFor="customTypeName">Custom Name</label>
-                    <input
-                        type="text"
-                        name="customTypeName"
-                        id="customTypeName"
-                        onChange={(e) =>
-                            updateAsset((draft) => {
-                                draft.type = e.target.value;
-                            })
-                        }
-                    />
-                </div>
-            );
-        }
-        return null;
-    }
+export default function InterfaceTab({ tab }: { tab: string }) {
+    const updateAsset: Updater<Asset> = useContext(UpdateAssetContext);
+    const asset: Asset = useContext(AssetContext);
 
     function getAdditionalFieldInputs() {
         let inputs = [];
@@ -82,6 +19,7 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
                         type="checkbox"
                         name={`AdditionalFieldCheck${i}`}
                         id={`AdditionalFieldCheck${i}`}
+                        checked={asset.additionalFields[i].isChecked}
                         onChange={(e) =>
                             updateAsset((draft) => {
                                 draft.additionalFields[i].isChecked = e.target.checked;
@@ -92,6 +30,7 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
                         type="text"
                         name={`AdditionalFieldField${i}`}
                         id={`AdditionalFieldField${i}`}
+                        value={asset.additionalFields[i].text}
                         onChange={(e) =>
                             updateAsset((draft) => {
                                 draft.additionalFields[i].text = e.target.value;
@@ -110,7 +49,7 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
             <legend hidden>Interface</legend>
 
             <div className="fieldgroup">
-                <ImagePathInput updateAsset={updateAsset} />
+                <ImagePathInput />
 
                 <div>
                     <label htmlFor="assetImageSize">Image Size</label>
@@ -118,6 +57,7 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
                         type="range"
                         name="assetImageSize"
                         id="assetImageSize"
+                        value={asset.image.size}
                         onChange={(e) => {
                             updateAsset((draft) => {
                                 draft.image.size = Number(e.target.value);
@@ -129,26 +69,12 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
 
             <div className="fieldgroup">
                 <div>
-                    <label htmlFor="assetType">Type (module, path...)</label>
-                    <select
-                        name="assetType"
-                        id="assetType"
-                        defaultValue={defaultTypes[1]}
-                        onChange={(e) => handleTypeChange(e)}>
-                        {typeOptions}
-                    </select>
-                </div>
-
-                {getCustomTypeNameInput()}
-            </div>
-
-            <div className="fieldgroup">
-                <div>
                     <label htmlFor="assetTitle">Title</label>
                     <input
                         type="text"
                         name="assetTitle"
                         id="assetTitle"
+                        value={asset.title}
                         onChange={(e) =>
                             updateAsset((draft) => {
                                 draft.title = e.target.value;
@@ -163,6 +89,7 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
                         type="text"
                         name="assetDescription"
                         id="assetDescription"
+                        value={asset.description}
                         onChange={(e) =>
                             updateAsset((draft) => {
                                 draft.description = e.target.value;
@@ -172,8 +99,6 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
                 </div>
             </div>
 
-            <div className="color-grid">{getColorGrid()}</div>
-
             <div className="fieldgroup">
                 <div>
                     <label htmlFor="assetTrack">Track</label>
@@ -181,6 +106,7 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
                         type="checkbox"
                         name="AssetTrackCheck"
                         id="AssetTrackCheck"
+                        checked={asset.track.isChecked}
                         onChange={(e) =>
                             updateAsset((draft) => {
                                 draft.track.isChecked = e.target.checked;
@@ -193,6 +119,7 @@ export default function InterfaceTab({ updateAsset, tab }: Props) {
                         id="assetTrack"
                         min="1"
                         max="6"
+                        value={asset.track.maxNumber}
                         onChange={(e) =>
                             updateAsset((draft) => {
                                 draft.track.maxNumber = Number(e.target.value);

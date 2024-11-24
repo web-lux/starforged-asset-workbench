@@ -1,12 +1,11 @@
+import { useContext } from 'react';
 import { Updater } from 'use-immer';
-import Asset from '../../types/Asset';
+import { UpdateAssetContext, AssetContext } from 'src/services/AssetContext.js';
+import Asset from 'src/types/Asset';
 
-interface Props {
-    updateAsset: Updater<Asset>;
-    tab: string;
-}
-
-export default function UpgradesTab({ updateAsset, tab }: Props) {
+export default function UpgradesTab({ tab }: { tab: string }) {
+    const updateAsset: Updater<Asset> = useContext(UpdateAssetContext);
+    const asset: Asset = useContext(AssetContext);
     let upgradeFields = [];
 
     for (let i = 0; i < 3; i++) {
@@ -19,6 +18,7 @@ export default function UpgradesTab({ updateAsset, tab }: Props) {
                     <textarea
                         name={`Upgrade${i}`}
                         id={`Upgrade${i}`}
+                        value={asset.upgrades[i].text}
                         onChange={(e) =>
                             updateAsset((draft) => {
                                 draft.upgrades[i].text = e.target.value;
@@ -34,6 +34,7 @@ export default function UpgradesTab({ updateAsset, tab }: Props) {
                             name={`Upgrade${i}check`}
                             id={`Upgrade${i}check`}
                             defaultChecked={i === 0 ? true : false}
+                            checked={asset.upgrades[i].isChecked}
                             onChange={(e) =>
                                 updateAsset((draft) => {
                                     draft.upgrades[i].isChecked = e.target.checked;
@@ -47,6 +48,7 @@ export default function UpgradesTab({ updateAsset, tab }: Props) {
                             type="checkbox"
                             name={`Upgrade${i}display`}
                             id={`Upgrade${i}display`}
+                            checked={asset.upgrades[i].isDisplayed}
                             defaultChecked={true}
                             onChange={(e) =>
                                 updateAsset((draft) => {

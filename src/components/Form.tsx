@@ -3,7 +3,7 @@ import Nav from './form/Nav';
 import InterfaceTab from './form/InterfaceTab';
 import UpgradesTab from './form/UpgradesTab';
 
-export default function Form({ updateAsset }) {
+export default function Form() {
     const [tab, setTab] = useState('interface');
 
     return (
@@ -14,15 +14,9 @@ export default function Form({ updateAsset }) {
                     setTab={setTab}
                 />
 
-                <InterfaceTab
-                    updateAsset={updateAsset}
-                    tab={tab}
-                />
+                <InterfaceTab tab={tab} />
 
-                <UpgradesTab
-                    updateAsset={updateAsset}
-                    tab={tab}
-                />
+                <UpgradesTab tab={tab} />
             </form>
         </div>
     );

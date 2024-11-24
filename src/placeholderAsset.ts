@@ -4,7 +4,7 @@ export const placeholderAsset: Asset = {
     title: 'Title',
     type: 'Module',
     hue: 280,
-    description: 'Lorem Ipsum',
+    description: 'Optional description',
     image: {
         path: 'https://i.imgur.com/ZcnuoVg.png',
         size: 100,

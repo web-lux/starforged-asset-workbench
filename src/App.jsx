@@ -1,5 +1,5 @@
 import { useImmer } from 'use-immer';
-import { AssetContext } from 'src/services/AssetContext.js';
+import { AssetContext, UpdateAssetContext } from 'src/services/AssetContext.js';
 import { placeholderAsset } from 'src/placeholderAsset.ts';
 import Header from 'src/components/Header';
 import Preview from 'src/components/Preview';
@@ -19,7 +19,11 @@ function App() {
                         <Preview />
                     </AssetContext.Provider>
 
-                    <Form updateAsset={updateAsset} />
+                    <AssetContext.Provider value={asset}>
+                        <UpdateAssetContext.Provider value={updateAsset}>
+                            <Form />
+                        </UpdateAssetContext.Provider>
+                    </AssetContext.Provider>
                 </main>
             </div>
 
