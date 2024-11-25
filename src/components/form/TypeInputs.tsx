@@ -1,69 +1,58 @@
+import { useContext } from 'react';
+import { Updater } from 'use-immer';
+import { UpdateAssetContext } from 'src/services/AssetContext.js';
+import Asset from 'src/types/Asset';
 import { useState } from 'react';
+import { assetTypesMap } from 'src/services/DefaultTypes';
+import { TypesIndexes } from 'src/types/Asset';
 
-export default function TypeInputsGroup() {
-    const defaultTypes = ['Command Vehicle', 'Module', 'Support Vehicle', 'Path', 'Companion', 'Deed'];
+export default function TypeInputs() {
+    const updateAsset: Updater<Asset> = useContext(UpdateAssetContext);
     const [isTypeCustom, setIsTypeCustom] = useState(false);
 
-    const typeOptions = [...defaultTypes, 'Custom'].map((type, index) => (
-        <option
-            value={type}
-            key={index}>
-            {type}
-        </option>
-    ));
+    const getOptions = () => {
+        let options = [];
+        for (let key of assetTypesMap.keys()) {
+            options.push(
+                <option
+                    value={key}
+                    key={key}>
+                    {assetTypesMap.get(key).name}
+                </option>
+            );
+        }
+        return options;
+    };
 
-    function changeHue(e) {
-        const hue = e.target.dataset.hue;
+    function handleTypeChange(e: React.ChangeEvent<HTMLSelectElement>) {
+        const optionId = Number(e.target.value);
+
+        if (optionId === TypesIndexes.CUSTOM) setIsTypeCustom(true);
+        else setIsTypeCustom(false);
         updateAsset((draft) => {
-            draft.hue = hue;
+            draft.type = {
+                id: optionId,
+                name: assetTypesMap.get(optionId).name,
+                hue: assetTypesMap.get(optionId).hue,
+            };
         });
     }
 
-    function getColorGrid() {
-        let colorGrid = [];
-
-        for (let index = 0; index <= 350; index += 25) {
-            colorGrid.push(
-                <div
-                    onClick={changeHue}
-                    style={{ backgroundColor: `hsl(${index}, 75%, 55%)` }}
-                    data-hue={index}
-                    key={index}></div>
-            );
-        }
-
-        return colorGrid;
-    }
-
-    function getCustomTypeNameInput() {
-        if (isTypeCustom) {
-            return (
-                <div>
-                    <label htmlFor="customTypeName">Custom Name</label>
-                    <input
-                        type="text"
-                        name="customTypeName"
-                        id="customTypeName"
-                        onChange={(e) =>
-                            updateAsset((draft) => {
-                                draft.type = e.target.value;
-                            })
-                        }
-                    />
-                </div>
-            );
-        }
-        return null;
-    }
-
-    function handleTypeChange(e) {
-        if (defaultTypes.includes(e.target.value)) {
-            setIsTypeCustom(false);
-        } else setIsTypeCustom(true);
-        updateAsset((draft) => {
-            draft.type = e.target.value;
-        });
-    }
+    const customTypeNameInput = (
+        <div>
+            <label htmlFor="customTypeName">Custom Name</label>
+            <input
+                type="text"
+                name="customTypeName"
+                id="customTypeName"
+                onChange={(e) =>
+                    updateAsset((draft) => {
+                        draft.type.name = e.target.value;
+                    })
+                }
+            />
+        </div>
+    );
 
     return (
         <>
@@ -73,16 +62,14 @@ export default function TypeInputsGroup() {
                     <select
                         name="assetType"
                         id="assetType"
-                        defaultValue={defaultTypes[1]}
+                        defaultValue={TypesIndexes.PATH}
                         onChange={(e) => handleTypeChange(e)}>
-                        {typeOptions}
+                        {getOptions()}
                     </select>
                 </div>
 
-                {getCustomTypeNameInput()}
+                {isTypeCustom && customTypeNameInput}
             </div>
-
-            <div className="color-grid">{getColorGrid()}</div>
         </>
     );
 }

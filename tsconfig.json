@@ -1,9 +1,11 @@
 {
     "compilerOptions": {
+        "target": "es2015",
         "jsx": "react-jsx",
         "baseUrl": ".",
         "paths": {
             "src/*": ["src/*"]
-        }
+        },
+        "moduleResolution": "Node"
     }
 }

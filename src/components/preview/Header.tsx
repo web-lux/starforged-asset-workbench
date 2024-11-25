@@ -12,8 +12,8 @@ export default function Header() {
             <div className="title-container">
                 <span
                     className="asset-type"
-                    style={{ color: `hsl(${asset.hue}, 20%, 55%)` }}>
-                    {asset.type}
+                    style={{ color: asset.type.hue.dark }}>
+                    {asset.type.name}
                 </span>
                 <span className="asset-title">{asset.title || 'Title'}</span>
                 {asset.description && (

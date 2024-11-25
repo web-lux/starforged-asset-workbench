@@ -3,6 +3,7 @@ import { Updater } from 'use-immer';
 import { UpdateAssetContext, AssetContext } from 'src/services/AssetContext.js';
 import ImagePathInput from 'src/components/form/ImagePathInput';
 import Asset from 'src/types/Asset';
+import TypeInputs from 'src/components/form/TypeInputs';
 
 export default function InterfaceTab({ tab }: { tab: string }) {
     const updateAsset: Updater<Asset> = useContext(UpdateAssetContext);
@@ -98,6 +99,8 @@ export default function InterfaceTab({ tab }: { tab: string }) {
                     />
                 </div>
             </div>
+
+            <TypeInputs />
 
             <div className="fieldgroup">
                 <div>
