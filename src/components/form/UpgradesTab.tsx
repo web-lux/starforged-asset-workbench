@@ -33,7 +33,6 @@ export default function UpgradesTab({ tab }: { tab: string }) {
                             type="checkbox"
                             name={`Upgrade${i}check`}
                             id={`Upgrade${i}check`}
-                            defaultChecked={i === 0 ? true : false}
                             checked={asset.upgrades[i].isChecked}
                             onChange={(e) =>
                                 updateAsset((draft) => {
@@ -49,7 +48,6 @@ export default function UpgradesTab({ tab }: { tab: string }) {
                             name={`Upgrade${i}display`}
                             id={`Upgrade${i}display`}
                             checked={asset.upgrades[i].isDisplayed}
-                            defaultChecked={true}
                             onChange={(e) =>
                                 updateAsset((draft) => {
                                     draft.upgrades[i].isDisplayed = e.target.checked;
