@@ -1,5 +1,5 @@
 import Asset, { TypesIndexes } from 'src/types/Asset';
-import { assetTypesMap } from './services/DefaultTypes';
+import { assetTypesMap } from 'src/assets/data/typesData';
 
 export const placeholderAsset: Asset = {
     title: 'Title',

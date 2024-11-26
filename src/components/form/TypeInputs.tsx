@@ -3,7 +3,7 @@ import { Updater } from 'use-immer';
 import { UpdateAssetContext } from 'src/services/AssetContext.js';
 import Asset from 'src/types/Asset';
 import { useState } from 'react';
-import { assetTypesMap } from 'src/services/DefaultTypes';
+import { assetTypesMap } from 'src/assets/data/typesData';
 import { TypesIndexes } from 'src/types/Asset';
 import CustomTypeInputs from './CustomTypeInputs';
 

@@ -2,9 +2,9 @@ import { useRef, useCallback, useContext } from 'react';
 import { toPng } from 'html-to-image';
 import { AssetContext } from 'src/services/AssetContext.js';
 import Asset from 'src/types/Asset';
-import Header from './preview/Header';
-import Upgrades from './preview/Upgrades';
-import Track from './preview/Track';
+import Header from 'src/components/preview/Header';
+import Upgrades from 'src/components/preview/Upgrades';
+import Track from 'src/components/preview/Track';
 
 export default function Preview() {
     const asset: Asset = useContext(AssetContext);

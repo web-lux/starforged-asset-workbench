@@ -1,6 +1,6 @@
 import { useImmer } from 'use-immer';
 import { AssetContext, UpdateAssetContext } from 'src/services/AssetContext.js';
-import { placeholderAsset } from 'src/placeholderAsset.ts';
+import { placeholderAsset } from 'src/assets/data/placeholderAsset.ts';
 import Header from 'src/components/Header';
 import Preview from 'src/components/Preview';
 import Form from 'src/components/Form';
