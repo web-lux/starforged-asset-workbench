@@ -3,7 +3,13 @@ export default function Track({ number }: { number: number }) {
         const track = [];
 
         for (let i = number; i >= 0; i--) {
-            track.push(<div className="asset-track-hex">{i}</div>);
+            track.push(
+                <div
+                    className="asset-track-hex"
+                    key={i}>
+                    {i}
+                </div>
+            );
         }
 
         return track;

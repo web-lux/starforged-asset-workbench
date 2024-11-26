@@ -58,6 +58,7 @@ export default function InterfaceTab({ tab }: { tab: string }) {
                         type="range"
                         name="assetImageSize"
                         id="assetImageSize"
+                        className="number-range"
                         value={asset.image.size}
                         onChange={(e) => {
                             updateAsset((draft) => {

@@ -5,6 +5,7 @@ import Asset from 'src/types/Asset';
 import { useState } from 'react';
 import { assetTypesMap } from 'src/services/DefaultTypes';
 import { TypesIndexes } from 'src/types/Asset';
+import CustomTypeInputs from './CustomTypeInputs';
 
 export default function TypeInputs() {
     const updateAsset: Updater<Asset> = useContext(UpdateAssetContext);
@@ -38,37 +39,6 @@ export default function TypeInputs() {
         });
     }
 
-    function convertHueIntoHSL(hueDegree: Number) {
-        return {
-            dark: `hsl(${hueDegree}, 40%, 56%)`,
-            mid: `hsl(${hueDegree}, 40%, 70%)`,
-            light: `hsl(${hueDegree}, 40%, 84%)`,
-        };
-    }
-
-    function handleHueChange(e: React.ChangeEvent<HTMLInputElement>) {
-        const hueDegree = Number(e.target.value);
-        updateAsset((draft) => {
-            draft.type.hue = convertHueIntoHSL(hueDegree);
-        });
-    }
-
-    const customTypeNameInput = (
-        <div>
-            <label htmlFor="customTypeName">Custom Name</label>
-            <input
-                type="text"
-                name="customTypeName"
-                id="customTypeName"
-                onChange={(e) =>
-                    updateAsset((draft) => {
-                        draft.type.name = e.target.value;
-                    })
-                }
-            />
-        </div>
-    );
-
     return (
         <>
             <div className="fieldgroup">
@@ -83,21 +53,7 @@ export default function TypeInputs() {
                     </select>
                 </div>
 
-                {isTypeCustom && customTypeNameInput}
-
-                <div>
-                    <label htmlFor="customTypeHue">Custom Color</label>
-                    <input
-                        name="customTypeHue"
-                        id="customTypeHue"
-                        type="range"
-                        defaultValue={0}
-                        min={0}
-                        max={360}
-                        onChange={(e) => handleHueChange(e)}
-                        className="hue-range"
-                    />
-                </div>
+                {isTypeCustom && <CustomTypeInputs />}
             </div>
         </>
     );

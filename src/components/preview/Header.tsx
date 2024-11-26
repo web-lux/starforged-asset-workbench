@@ -26,6 +26,7 @@ export default function Header() {
                         field.isChecked && (
                             <AdditionalField
                                 id={field.id}
+                                key={field.id}
                                 text={field.text}
                             />
                         )

@@ -67,19 +67,12 @@
 
     .main-container {
         width: 100%;
-        padding: 80px;
+        max-width: 1280px;
+        margin: auto;
+        padding: 40px;
         row-gap: 20px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-
-        @media screen and (max-width: 900px) {
-            header.main-header {
-                margin-bottom: 20px;
-                max-width: 700px;
-                text-align: center;
-            }
-        }
     }
 
     header.main-header {
@@ -87,6 +80,12 @@
         grid-template-columns: auto 1fr;
         align-items: center;
         gap: 20px;
+
+        @media screen and (max-width: 900px) {
+            margin-bottom: 20px;
+            max-width: 700px;
+            text-align: center;
+        }
 
         h1 {
             font-size: 36px;
@@ -106,8 +105,9 @@
 
     main {
         gap: 40px;
-        display: grid;
-        grid-template-columns: auto 1fr;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     footer {
@@ -264,6 +264,7 @@
         display: flex;
         position: absolute;
         bottom: 15px;
+
         .asset-track-hex {
             background-image: url(src/assets/hex-border-track.svg);
             background-repeat: no-repeat;
@@ -279,29 +280,17 @@
             margin-left: -5px;
         }
     }
-}
 
-.top-hex {
-    position: absolute;
-    top: -32px;
-    right: 70px;
-}
+    .top-hex {
+        position: absolute;
+        top: -32px;
+        right: 70px;
+    }
 
-.bottom-hex {
-    position: absolute;
-    top: 40px;
-    right: -46px;
-}
-
-.color-grid {
-    display: grid;
-    grid-template-columns: repeat(25, 1fr);
-    gap: 5px;
-
-    div {
-        width: 12px;
-        aspect-ratio: 1 / 1;
-        cursor: pointer;
+    .bottom-hex {
+        position: absolute;
+        top: 40px;
+        right: -46px;
     }
 }
 
@@ -311,6 +300,10 @@
     border: solid var(--black) 2px;
     padding: 30px;
     position: relative;
+    flex: 1;
+    overflow-y: auto;
+    max-height: 525px;
+    flex-basis: 300px;
 
     ul {
         list-style-type: none;
@@ -349,9 +342,13 @@
 
         .fieldgroup {
             display: flex;
-            align-items: start;
+            gap: 40px;
             flex-wrap: wrap;
-            gap: 20px;
+
+            > div {
+                flex: 1;
+                flex-basis: 200px;
+            }
         }
 
         label {
@@ -368,7 +365,8 @@
         input[type='range'],
         input[type='file'],
         label {
-            width: 200px;
+            width: 100%;
+            max-width: 340px;
         }
 
         input[type='checkbox'] + input[type='text'] {
@@ -395,13 +393,6 @@
             }
         }
 
-        input[type='range'] {
-            -webkit-appearance: none;
-            appearance: none;
-            background: transparent;
-            cursor: pointer;
-        }
-
         input[type='number'] {
             padding: 1px 5px;
             width: 50px;
@@ -415,34 +406,83 @@
             }
         }
 
-        @supports (-moz-appearance: none) {
-            input[type='range'] {
-                appearance: auto;
-            }
-        }
-
-        $track-height: 5px;
-        $thumb-height: 15px;
-
-        input[type='range']::-webkit-slider-runnable-track {
-            background: white;
-            border: solid 2px var(--black);
-            height: $track-height;
-            border-radius: 5px;
-            transform: translateY(13px);
-        }
-
-        input[type='range']::-webkit-slider-thumb {
+        input[type='range'] {
+            --track-background: #fff;
+            --track-height: 6px;
+            --track-radius: 5px;
+            --thumb-background: #fff;
+            --thumb-height: 15px;
+            --thumb-width: 15px;
+            --thumb-radius: 50%;
+            --border: solid 2px var(--black);
             -webkit-appearance: none;
-            margin-top: calc(($track-height / 2) - ($thumb-height / 2) - 2px);
-            background: white;
-            border: var(--black) 2px solid;
-            border-radius: 50%;
-            height: $thumb-height;
-            width: 15px;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
 
-            &:active {
-                background: var(--black);
+            &:focus {
+                outline: none;
+            }
+
+            /* combining webkit and moz selectors by nesting somehow made chrome glitch so we have to proceed with nesting to keep DRY */
+
+            @mixin track() {
+                background: var(--track-background);
+                border: var(--border);
+                height: var(--track-height);
+                border-radius: var(--track-radius);
+            }
+
+            &::-webkit-slider-runnable-track {
+                @include track();
+            }
+
+            &::-moz-range-track {
+                /* for some reasons, firefox and chrome don't render 5px as track height the same so firefox has to be tweaked */
+                @include track();
+                height: calc(var(--track-height) - 4px);
+                transform: translateY(6px);
+            }
+
+            @mixin thumb() {
+                background-color: var(--thumb-background);
+                border: var(--border);
+                height: var(--thumb-height);
+                width: var(--thumb-width);
+                border-radius: var(--thumb-radius);
+
+                &:active {
+                    background: var(--black);
+                }
+            }
+
+            &::-webkit-slider-thumb {
+                @include thumb();
+                -webkit-appearance: none;
+                appearance: none;
+                margin-top: calc((var(--track-height) / 2) - (var(--thumb-height) / 2) - 2px);
+            }
+
+            &::-moz-range-thumb {
+                @include thumb();
+                --thumb-height: 10px;
+                --thumb-width: 10px;
+                /* see above, tweak for browser differences*/
+                transform: translateY(6px);
+            }
+
+            &.hue-range {
+                --track-height: 10px;
+                --track-background: linear-gradient(
+                    90deg,
+                    hsl(0, 100%, 50%),
+                    hsl(60, 100%, 50%),
+                    hsl(120, 100%, 50%),
+                    hsl(180, 100%, 50%),
+                    hsl(240, 100%, 50%),
+                    hsl(300, 100%, 50%),
+                    hsl(360, 100%, 50%)
+                );
             }
         }
 
@@ -487,78 +527,5 @@
                 }
             }
         }
-    }
-}
-
-.hue-range {
-    $border-radius: 0;
-    $track-height: 20px;
-    $thumb-color: #000;
-    $thumb-width: 5px;
-    $track-gradient: linear-gradient(
-        90deg,
-        hsl(0, 100%, 50%),
-        hsl(60, 100%, 50%),
-        hsl(120, 100%, 50%),
-        hsl(180, 100%, 50%),
-        hsl(240, 100%, 50%),
-        hsl(300, 100%, 50%),
-        hsl(360, 100%, 50%)
-    );
-
-    -webkit-appearance: none;
-    appearance: none;
-    background: transparent;
-    cursor: pointer;
-    position: relative;
-    bottom: -10px;
-
-    &:focus {
-        outline: none;
-    }
-
-    &::-webkit-slider-runnable-track {
-        background: $track-gradient;
-        border-radius: $border-radius;
-        height: $track-height;
-    }
-
-    &::-webkit-slider-thumb {
-        -webkit-appearance: none; /* Override default look */
-        appearance: none;
-        margin-top: -12px; /* Centers thumb on the track */
-
-        /* custom */
-        background-color: $thumb-color;
-        height: $track-height;
-        width: $thumb-width;
-    }
-
-    &:focus::-webkit-slider-thumb {
-        border: 1px solid #053a5f;
-        outline: 3px solid #053a5f;
-        outline-offset: 0.125rem;
-    }
-
-    &::-moz-range-track {
-        background: $track-gradient;
-        border-radius: $border-radius;
-        height: $track-height;
-    }
-
-    &::-moz-range-thumb {
-        border: none; /*Removes extra border that FF applies*/
-        border-radius: 0; /*Removes default border-radius that FF applies*/
-
-        /*custom styles*/
-        background-color: $thumb-color;
-        height: $track-height;
-        width: $thumb-width;
-    }
-
-    &:focus::-moz-range-thumb {
-        border: 1px solid #053a5f;
-        outline: 3px solid #053a5f;
-        outline-offset: 0.125rem;
     }
 }
