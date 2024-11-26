@@ -1,9 +1,14 @@
-import Asset from './interfaces/Asset';
+import Asset, { TypesIndexes } from 'src/types/Asset';
+import { assetTypesMap } from 'src/assets/data/typesData';
 
 export const placeholderAsset: Asset = {
     title: 'Title',
-    type: 'Module',
-    description: 'Lorem Ipsum',
+    type: {
+        id: TypesIndexes.MODULE,
+        name: assetTypesMap.get(TypesIndexes.MODULE).name,
+        hue: assetTypesMap.get(TypesIndexes.MODULE).hue,
+    },
+    description: 'Optional description',
     image: {
         path: 'https://i.imgur.com/ZcnuoVg.png',
         size: 100,
