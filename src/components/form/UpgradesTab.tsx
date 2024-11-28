@@ -13,7 +13,7 @@ export default function UpgradesTab({ tab }: { tab: string }) {
             <div
                 className="fieldgroup"
                 key={i}>
-                <div>
+                <div className="upgrade-text-input">
                     <label htmlFor={`Upgrade${i}`}>Upgrade {i + 1}</label>
                     <textarea
                         name={`Upgrade${i}`}
@@ -63,6 +63,10 @@ export default function UpgradesTab({ tab }: { tab: string }) {
     return (
         <fieldset className={tab === 'upgrades' ? 'upgrades visible' : null}>
             <legend hidden>Upgrades</legend>
+            <p className="help">
+                The inputs support markdown-like syntax. You can surround text with <mark>**</mark> to <strong>bold</strong>, <mark>__</mark> to{' '}
+                <i>italicize</i> and <mark>--</mark> to <u>underline</u>.
+            </p>
             {upgradeFields}
         </fieldset>
     );

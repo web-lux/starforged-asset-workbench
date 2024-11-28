@@ -52,7 +52,6 @@
 * {
     padding: 0;
     margin: 0;
-    font-weight: normal;
     box-sizing: border-box;
 }
 
@@ -251,11 +250,13 @@
             b,
             strong {
                 font-weight: bold;
+                font-style: inherit;
             }
 
             i,
             em {
                 font-style: italic;
+                font-weight: inherit;
             }
         }
     }
@@ -359,9 +360,14 @@
             margin-bottom: 6px;
         }
 
+        .help {
+            mark {
+                background: var(--l-grey);
+            }
+        }
+
         input[type='text'],
         select,
-        textarea,
         input[type='range'],
         input[type='file'],
         label {
@@ -493,11 +499,20 @@
             padding: 4px 6px;
             border: solid var(--black) 2px;
             font-family: var(--ui);
+            width: 100%;
 
             &:focus {
                 outline: none;
                 border: var(--red) solid 2px;
             }
+        }
+
+        .checkboxes {
+            flex: auto !important;
+        }
+
+        .upgrade-text-input {
+            flex-basis: 400px !important;
         }
 
         input[type='checkbox'] {
