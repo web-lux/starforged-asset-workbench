@@ -9,7 +9,7 @@ export default function Upgrades() {
         const mdRegex = {
             bold: /\*\*([\s\S]*?)\*\*/g,
             italic: /_([\s\S]*?)_/g,
-            underline: /~~([\s\S]*?)~~/g,
+            underline: /--([\s\S]*?)--/g,
         };
 
         const htmlTags = {
