@@ -105,15 +105,15 @@ export default function InterfaceTab({ tab }: { tab: string }) {
 
             <div className="fieldgroup">
                 <div>
-                    <label htmlFor="assetTrack">Track</label>
+                    <label htmlFor="assetTrack">Numerical Track</label>
                     <input
                         type="checkbox"
                         name="AssetTrackCheck"
                         id="AssetTrackCheck"
-                        checked={asset.track.isChecked}
+                        checked={asset.numericalTrack.isChecked}
                         onChange={(e) =>
                             updateAsset((draft) => {
-                                draft.track.isChecked = e.target.checked;
+                                draft.numericalTrack.isChecked = e.target.checked;
                             })
                         }
                     />
@@ -123,13 +123,41 @@ export default function InterfaceTab({ tab }: { tab: string }) {
                         id="assetTrack"
                         min="1"
                         max="6"
-                        value={asset.track.maxNumber}
+                        value={asset.numericalTrack.maxNumber}
                         onChange={(e) =>
                             updateAsset((draft) => {
-                                draft.track.maxNumber = Number(e.target.value);
+                                draft.numericalTrack.maxNumber = Number(e.target.value);
                             })
                         }
                     />
+                </div>
+
+                <div>
+                    <label htmlFor="textTrackCheckbox">Text Track</label>
+                    <input
+                        type="checkbox"
+                        name="textTrackCheckbox"
+                        id="textTrackCheckbox"
+                        checked={asset.textTrack.isChecked}
+                        onChange={(e) =>
+                            updateAsset((draft) => {
+                                draft.textTrack.isChecked = e.target.checked;
+                            })
+                        }
+                    />
+
+                    <input
+                        type="text"
+                        name="textTrack"
+                        id="textTrack"
+                        value={asset.textTrack.text}
+                        onChange={(e) =>
+                            updateAsset((draft) => {
+                                draft.textTrack.text = e.target.value;
+                            })
+                        }
+                    />
+                    <p>Use comma to separate your options</p>
                 </div>
             </div>
 

@@ -39,9 +39,13 @@ export default interface Asset {
         path: string;
         size: number;
     };
-    track: {
+    numericalTrack: {
         isChecked: boolean;
         maxNumber: number;
+    };
+    textTrack: {
+        isChecked: boolean;
+        text: string;
     };
     additionalFields: Field[];
     upgrades: Field[];

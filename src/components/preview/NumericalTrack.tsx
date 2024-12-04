@@ -1,4 +1,4 @@
-export default function Track({ number }: { number: number }) {
+export default function NumericalTrack({ number }: { number: number }) {
     function getTrack(): JSX.Element[] {
         const track = [];
 
@@ -15,5 +15,5 @@ export default function Track({ number }: { number: number }) {
         return track;
     }
 
-    return <div className="asset-track">{getTrack()}</div>;
+    return <div className="numerical-track">{getTrack()}</div>;
 }

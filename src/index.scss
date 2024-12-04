@@ -150,6 +150,8 @@
     background-repeat: no-repeat !important;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
     header {
         position: relative;
@@ -263,22 +265,45 @@
 
     .asset-track {
         display: flex;
-        position: absolute;
-        bottom: 15px;
+        flex-direction: column;
+        margin-top: auto;
+        gap: 12px;
 
-        .asset-track-hex {
-            background-image: url(src/assets/hex-border-track.svg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 38px;
-            width: 34px;
-            text-align: center;
-            line-height: 40px;
-            font-family: var(--title);
-            font-size: 14px;
-            color: #c7cacf;
-            font-weight: 700;
-            margin-left: -5px;
+        .numerical-track {
+            display: flex;
+
+            .asset-track-hex {
+                background-image: url(src/assets/hex-border-track.svg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 38px;
+                width: 34px;
+                text-align: center;
+                line-height: 40px;
+                font-family: var(--title);
+                font-size: 14px;
+                color: #c7cacf;
+                font-weight: 700;
+                margin-left: -5px;
+            }
+        }
+
+        .text-tracks {
+            display: flex;
+            border: solid black 2px;
+            background: black;
+            gap: 2px;
+            margin-top: auto;
+
+            .text-track {
+                flex: 1;
+                background: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 12px 6px;
+                text-align: center;
+            }
         }
     }
 

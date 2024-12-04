@@ -13,9 +13,13 @@ export const placeholderAsset: Asset = {
         path: 'https://i.imgur.com/ZcnuoVg.png',
         size: 100,
     },
-    track: {
+    numericalTrack: {
         isChecked: false,
         maxNumber: 1,
+    },
+    textTrack: {
+        isChecked: false,
+        text: 'Lorem, Ipsum',
     },
     additionalFields: [
         {

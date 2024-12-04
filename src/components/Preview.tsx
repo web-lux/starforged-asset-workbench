@@ -4,7 +4,8 @@ import { AssetContext } from 'src/services/AssetContext.js';
 import Asset from 'src/types/Asset';
 import Header from 'src/components/preview/Header';
 import Upgrades from 'src/components/preview/Upgrades';
-import Track from 'src/components/preview/Track';
+import NumericalTrack from 'src/components/preview/NumericalTrack';
+import TextTrack from './preview/TextTrack';
 
 export default function Preview() {
     const asset: Asset = useContext(AssetContext);
@@ -34,7 +35,10 @@ export default function Preview() {
                 ref={ref}>
                 <Header />
                 <Upgrades />
-                {asset.track.isChecked && <Track number={asset.track.maxNumber} />}
+                <div className="asset-track">
+                    {asset.numericalTrack.isChecked && <NumericalTrack number={asset.numericalTrack.maxNumber} />}
+                    {asset.textTrack.isChecked && asset.textTrack.text && <TextTrack />}
+                </div>
             </section>
 
             <button onClick={saveImage}>Save as PNG</button>
