@@ -5,9 +5,30 @@ import Header from 'src/components/Header';
 import Preview from 'src/components/Preview';
 import Form from 'src/components/Form';
 import Footer from 'src/components/Footer';
+import { useEffect } from 'react';
 
 function App() {
-    const [asset, updateAsset] = useImmer(placeholderAsset);
+    const [asset, updateAsset] = useImmer(loadFromLocalStorage());
+
+    function loadFromLocalStorage() {
+        const currentAsset = localStorage.getItem('currentAsset');
+        if (currentAsset) {
+            return JSON.parse(currentAsset);
+        }
+        return placeholderAsset;
+    }
+
+    useEffect(() => {
+        function saveToLocalStorage() {
+            localStorage.setItem('currentAsset', JSON.stringify(asset));
+        }
+
+        window.addEventListener('beforeunload', saveToLocalStorage);
+
+        return () => {
+            window.removeEventListener('beforeunload', saveToLocalStorage);
+        };
+    }, [asset]);
 
     return (
         <div className="wrapper">
