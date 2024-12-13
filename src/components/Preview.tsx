@@ -28,6 +28,17 @@ export default function Preview() {
             });
     }, [ref]);
 
+    function exportJSON() {
+        const dataURI = `data:text/json;charset=utf-8, ${encodeURIComponent(JSON.stringify(asset))}`;
+        const link = document.createElement('a');
+        const fileName = asset.title.trim() === '' ? 'starforged-custom-asset' : asset.title.trim();
+        link.download = `${fileName}.json`;
+        link.href = dataURI;
+        link.click();
+    }
+
+    function loadJSON() {}
+
     return (
         <div>
             <section
@@ -41,7 +52,21 @@ export default function Preview() {
                 </div>
             </section>
 
-            <button onClick={saveImage}>Save as PNG</button>
+            <div className="buttons-group">
+                <button
+                    onClick={saveImage}
+                    className="btn btn--primary">
+                    Save as PNG
+                </button>
+                <div className="json-buttons">
+                    <button
+                        className="btn btn--primary"
+                        onClick={exportJSON}>
+                        Export as JSON
+                    </button>
+                    <button className="btn btn--secondary">Load JSON</button>
+                </div>
+            </div>
         </div>
     );
 }

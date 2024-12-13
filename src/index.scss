@@ -128,21 +128,6 @@
 /* Preview */
 
 .asset-preview {
-    & ~ button {
-        font-family: var(--ui);
-        width: 100%;
-        margin-top: 10px;
-        padding: 8px 0;
-        border-radius: 2px;
-        background: var(--black);
-        color: white;
-        border: none;
-
-        &:hover {
-            cursor: pointer;
-        }
-    }
-
     height: 525px;
     width: 375px;
     border: var(--black) 2px solid;
@@ -317,6 +302,40 @@
         position: absolute;
         top: 40px;
         right: -46px;
+    }
+}
+
+.buttons-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.json-buttons {
+    display: flex;
+    gap: 4px;
+}
+
+.btn {
+    font-family: var(--ui);
+    width: 100%;
+    padding: 8px 0;
+    border-radius: 2px;
+
+    &--primary {
+        background: var(--black);
+        color: white;
+        border: none;
+    }
+
+    &--secondary {
+        background: none;
+        border: 1px solid var(--black);
+    }
+
+    &:hover {
+        cursor: pointer;
     }
 }
 
