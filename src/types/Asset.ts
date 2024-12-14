@@ -1,3 +1,6 @@
+// WARNING: if you modify the asset data structure in any way, report your changes to the AssetSchema as well. It's used for JSON validation when the user loads a file.
+// Be mindful of what you modify so users don't get an invalid error when loading an asset that could previously work.
+
 type Field = {
     id: number;
     isChecked: boolean;

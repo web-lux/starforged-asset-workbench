@@ -37,7 +37,9 @@ function App() {
 
                 <main>
                     <AssetContext.Provider value={asset}>
-                        <Preview />
+                        <UpdateAssetContext.Provider value={updateAsset}>
+                            <Preview />
+                        </UpdateAssetContext.Provider>
                     </AssetContext.Provider>
 
                     <AssetContext.Provider value={asset}>

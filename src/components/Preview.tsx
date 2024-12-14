@@ -6,6 +6,7 @@ import Header from 'src/components/preview/Header';
 import Upgrades from 'src/components/preview/Upgrades';
 import NumericalTrack from 'src/components/preview/NumericalTrack';
 import TextTrack from './preview/TextTrack';
+import JsonButtons from './preview/JsonButtons';
 
 export default function Preview() {
     const asset: Asset = useContext(AssetContext);
@@ -41,7 +42,15 @@ export default function Preview() {
                 </div>
             </section>
 
-            <button onClick={saveImage}>Save as PNG</button>
+            <div className="buttons-group">
+                <button
+                    onClick={saveImage}
+                    className="btn btn--primary">
+                    Save as PNG
+                </button>
+
+                <JsonButtons />
+            </div>
         </div>
     );
 }
